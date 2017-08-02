@@ -46,4 +46,7 @@
 <h3 *ngIf="user">Welcome {{user.username}}</h3>
   <a [routerLink]="['projects','all']"> Show all projects </a>
 
+  <a [routerLink]="['projects/type', 'onSite']"> Show onsite projects </a>
+  <a [routerLink]="['projects/type','online']"> Show all projects </a>
+  <a [routerLink]="['projects/type','international']"> Show all projects </a>
 <router-outlet></router-outlet>

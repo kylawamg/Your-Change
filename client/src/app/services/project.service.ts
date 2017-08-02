@@ -43,7 +43,7 @@ export class ProjectService {
   }
   getProjectByType(type){
     return this.http.get(`${baseURL}/project/${type}`, this.options)
-      .map((res) => res.json())
+      .map((res) =>res.json())
       .catch(this.handleError);
   }
 

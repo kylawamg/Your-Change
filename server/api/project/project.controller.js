@@ -13,8 +13,10 @@ exports.getAllProjects = function (req,res,next){
 
 //Get project filtering by type
 exports.getAllByType = function(req,res,next){
-  projectModel.findById(req.params.type)
-  .then(projectDetail => {res.json(projectDetail);
+  console.log(req.params.type);
+  const typo = req.params.type;
+  projectModel.find({'type':typo})
+  .then(projectList => {res.json(projectList);
   })
   .reject(err => { res.status(500).json(err);
   });

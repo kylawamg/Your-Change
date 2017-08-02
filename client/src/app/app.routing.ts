@@ -7,6 +7,7 @@ import { ProjectsComponent} from './projects/projects.component';
 import { ProjectCreateComponent} from './project-create/project-create.component';
 import { ShowAllProjectsComponent} from './show-all-projects/show-all-projects.component';
 import { ProjectDetailComponent} from './project-detail/project-detail.component';
+import { ShowProjectByTypeComponent} from './show-project-by-type/show-project-by-type.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent},
@@ -21,7 +22,9 @@ export const routes: Routes = [
         children: [
           { path: 'new', component: ProjectCreateComponent },
           { path: 'all', component: ShowAllProjectsComponent },
-          { path: 'detail/:id', component: ProjectDetailComponent }
+          { path: 'detail/:id', component: ProjectDetailComponent },
+          { path: 'type/:type', component: ShowProjectByTypeComponent }
+
       //    { path: ':id/edit', component: EditComponent }
         ]
     },

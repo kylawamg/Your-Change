@@ -17,6 +17,7 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 import { ProjectCreateComponent } from './project-create/project-create.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ShowAllProjectsComponent } from './show-all-projects/show-all-projects.component';
+import { ShowProjectByTypeComponent } from './show-project-by-type/show-project-by-type.component';
 
 
 
@@ -31,7 +32,8 @@ import { ShowAllProjectsComponent } from './show-all-projects/show-all-projects.
     ProjectDetailComponent,
     ProjectCreateComponent,
     ProjectsComponent,
-    ShowAllProjectsComponent
+    ShowAllProjectsComponent,
+    ShowProjectByTypeComponent
   ],
   imports: [
     BrowserModule,

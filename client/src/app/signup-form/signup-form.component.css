@@ -1,0 +1,15 @@
+.form-container{
+  text-align:center;
+}
+.login-form {
+  display: inline-block;
+  min-width: 400px;
+}
+#loginBtn {
+  background: red;
+}
+.example-card{
+  width: 30%;
+  display:inline-block;
+  margin-top: 30px;
+}

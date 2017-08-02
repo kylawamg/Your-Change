@@ -1,0 +1,24 @@
+<nav class="navbar ">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="http://bulma.io">
+        yourChange
+    </a>
+    <div class="navbar-burger burger" data-target="navMenuExample">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div id="navMenuExample" class="navbar-menu">
+    <div class="navbar-start">
+    </div>
+    <div class="navbar-end">
+      <a *ngIf="!user" class="navbar-item" [routerLink]="['/user/login']">Login</a>
+      <a *ngIf="!user" class="navbar-item" [routerLink]="['/user/signup']">Signup</a>
+      <a *ngIf="user" class="navbar-item" (click)="logout()">Logout</a>
+    </div>
+  </div>
+</nav>
+<h3 *ngIf="user">Welcome {{user.username}}</h3>
+
+<router-outlet></router-outlet>

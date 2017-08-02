@@ -1,6 +1,6 @@
 <nav class="navbar ">
   <div class="navbar-brand">
-    <a class="navbar-item" href="http://bulma.io">
+    <a class="navbar-item" href="#">
         yourChange
     </a>
     <div class="navbar-burger burger" data-target="navMenuExample">
@@ -44,5 +44,6 @@
   </div>
 </nav>
 <h3 *ngIf="user">Welcome {{user.username}}</h3>
+  <a [routerLink]="['projects','all']"> Show all projects </a>
 
 <router-outlet></router-outlet>

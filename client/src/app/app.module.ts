@@ -16,6 +16,7 @@ import { CommentComponent } from './comment/comment.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { ProjectCreateComponent } from './project-create/project-create.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { ShowAllProjectsComponent } from './show-all-projects/show-all-projects.component';
 
 
 
@@ -29,7 +30,8 @@ import { ProjectsComponent } from './projects/projects.component';
     CommentComponent,
     ProjectDetailComponent,
     ProjectCreateComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    ShowAllProjectsComponent
   ],
   imports: [
     BrowserModule,

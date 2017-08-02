@@ -20,6 +20,7 @@ exports.editUser = function(req, res, next) {
   var country = req.body.country;
   var email = req.body.email;
 
+
   const user = {
     name,
     lastName,
@@ -55,6 +56,10 @@ exports.createUser = function(req, res, next) {
   var password = req.body.password;
   var name = req.body.name;
   var email = req.body.email;
+  var type = req.body.type;
+  var city = req.body.city;
+  var country = req.body.country;
+  var address = req.body.address;
 
   if (!username || !password) {
     res.status(400).json({
@@ -80,7 +85,11 @@ exports.createUser = function(req, res, next) {
       username,
       password: hashPass,
       name,
-      email
+      email,
+      type,
+      city,
+      country,
+      address
     });
     console.log(newUser);
     newUser.save((err) => {

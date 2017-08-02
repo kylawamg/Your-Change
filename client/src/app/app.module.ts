@@ -10,8 +10,12 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { UserComponent } from './user/user.component';
 import { SessionService } from "./services/session.service";
 import { LoggedinService } from './services/loggedin.service';
+import { ProjectService } from './services/project.service';
 import { routes } from './app.routing';
 import { CommentComponent } from './comment/comment.component';
+import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { ProjectCreateComponent } from './project-create/project-create.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 
 
@@ -22,7 +26,10 @@ import { CommentComponent } from './comment/comment.component';
     LoginFormComponent,
     HomeComponent,
     UserComponent,
-    CommentComponent
+    CommentComponent,
+    ProjectDetailComponent,
+    ProjectCreateComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,7 @@ import { CommentComponent } from './comment/comment.component';
     RouterModule.forRoot(routes),
 
   ],
-  providers: [SessionService, LoggedinService],
+  providers: [SessionService, LoggedinService,ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

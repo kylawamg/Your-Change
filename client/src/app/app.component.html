@@ -13,9 +13,33 @@
     <div class="navbar-start">
     </div>
     <div class="navbar-end">
-      <a *ngIf="!user" class="navbar-item" [routerLink]="['/user/login']">Login</a>
-      <a *ngIf="!user" class="navbar-item" [routerLink]="['/user/signup']">Signup</a>
-      <a *ngIf="user" class="navbar-item" (click)="logout()">Logout</a>
+      <a *ngIf="!user" class="navbar-item" [routerLink]="['/user/login']">
+      <span class="icon is-small is-left"> <i class="fa fa-sign-in"></i></span>Login</a>
+      <a *ngIf="!user" class="navbar-item" [routerLink]="['/user/signup']">
+      <span class="icon is-small is-left"> <i class="fa fa-user-plus"></i></span>Signup</a>
+      <div *ngIf="user" class="navbar-item has-dropdown is-hoverable">
+        <a href=""class="navbar-item" >  <span class="icon is-small is-left"> <i class="fa fa-cog"></i></span></a>
+          <div class="navbar-dropdown ">
+            <a class="navbar-item " href="/documentation/overview/start/">
+              My Profile
+            </a>
+            <a class="navbar-item " href="/documentation/overview/start/">
+              My projects
+          </a>
+          <a class="navbar-item " href="/documentation/overview/start/">
+            Messages
+          </a>
+          <a *ngIf="user.type=='ONG'"class="navbar-item " [routerLink]="['/projects/new']"href="/documentation/overview/start/">
+            Create Project
+          </a>
+          </div>
+      </div>
+      <a *ngIf="user" class="navbar-item" (click)="logout()">
+          <span class="icon is-small is-left">
+             <i class="fa fa-sign-out"></i>
+           </span>Logout</a>
+
+
     </div>
   </div>
 </nav>

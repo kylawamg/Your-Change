@@ -12,7 +12,7 @@ const userSchema = new Schema({
   address: String,
   city: String,
   type: {
-    type:String, enum: ['user', 'ong']
+    type:String, enum: ['User', 'ONG']
   },
   country: String,
   email: String,

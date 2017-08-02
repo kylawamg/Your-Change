@@ -16,7 +16,8 @@ export class SignupFormComponent implements OnInit {
     address: '',
     city: '',
     country: '',
-    email: ''
+    email: '',
+    type: ''
   };
   error: string;
 
@@ -25,7 +26,7 @@ export class SignupFormComponent implements OnInit {
   ngOnInit() {
   }
   signup() {
-    console.log(this.formInfo);
+    console.log(this.formInfo.type);
     this.session.signup(this.formInfo)
       .subscribe(
         (user) => this.successCb(user),

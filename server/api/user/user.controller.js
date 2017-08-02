@@ -134,7 +134,13 @@ exports.logInUser = function(req, res, next) {
     });
   })(req, res, next);
 };
-
+exports.getUserProfile = function(req,res,next){
+  User.findById(req.params.id)
+  .then(userDetail => {res.json(userDetail);
+  })
+  .reject(err => { res.status(500).json(err);
+  });
+};
 
 exports.logoutUser = function(req, res, next) {
   req.logout();

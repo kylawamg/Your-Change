@@ -18,6 +18,7 @@ import { ProjectCreateComponent } from './project-create/project-create.componen
 import { ProjectsComponent } from './projects/projects.component';
 import { ShowAllProjectsComponent } from './show-all-projects/show-all-projects.component';
 import { ShowProjectByTypeComponent } from './show-project-by-type/show-project-by-type.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 
@@ -33,7 +34,8 @@ import { ShowProjectByTypeComponent } from './show-project-by-type/show-project-
     ProjectCreateComponent,
     ProjectsComponent,
     ShowAllProjectsComponent,
-    ShowProjectByTypeComponent
+    ShowProjectByTypeComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

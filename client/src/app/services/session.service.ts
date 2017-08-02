@@ -35,7 +35,11 @@ export class SessionService {
       .map(res => res.json())
       .catch(this.handleError);
   }
-
+  getUserProfile (id){
+    return this.http.get(`${baseURL}/user/${id}`, this.options)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
   logout() {
     return this.http.post(`${baseURL}/user/logout`,{},this.options)
       .map(res => res.json())

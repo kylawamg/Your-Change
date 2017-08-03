@@ -4,7 +4,7 @@ userModel = require('../user/user.model');
 
 //Get all projects
 exports.getAllProjects = function (req,res,next){
-  projectModel.find()
+  projectModel.find().populate('creator').exec()
   .then( projectList => {res.json(projectList);
   })
   .reject(err => { res.status(500).json(err);
@@ -24,9 +24,11 @@ exports.getAllByType = function(req,res,next){
 
 //Get project filtering by creator
 exports.getAllByUser = function(req,res,next){
-  const id = req.params.creator;
+  const id = req.params.id;
+
   projectModel.find({'creator':id})
-  .then(projectList => {res.json(projectList);
+  .then(projectList => {  console.log(projectList);res.json(projectList);
+
   })
   .reject(err => { res.status(500).json(err);
   });

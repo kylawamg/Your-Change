@@ -12,14 +12,14 @@ import { LoggedinService } from '../services/loggedin.service';
 })
 export class ShowProjectsByUserComponent implements OnInit {
 
-  
+
     projects:Observable<Array<object>>;
   constructor(private project: ProjectService, private route: ActivatedRoute, private session:SessionService, private loggedin: LoggedinService) { }
 
   ngOnInit() {
+    
     this.route.params
        .subscribe((params) => {
-
          this.project.getProjectByUser(params.creator).subscribe( projects => {
            console.log(projects);
            this.projects = projects

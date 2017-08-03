@@ -20,6 +20,7 @@ import { ShowAllProjectsComponent } from './show-all-projects/show-all-projects.
 import { ShowProjectByTypeComponent } from './show-project-by-type/show-project-by-type.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ShowProjectsByUserComponent } from './show-projects-by-user/show-projects-by-user.component';
+import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
 
 
 
@@ -37,7 +38,8 @@ import { ShowProjectsByUserComponent } from './show-projects-by-user/show-projec
     ShowAllProjectsComponent,
     ShowProjectByTypeComponent,
     UserProfileComponent,
-    ShowProjectsByUserComponent
+    ShowProjectsByUserComponent,
+    EditUserProfileComponent
   ],
   imports: [
     BrowserModule,

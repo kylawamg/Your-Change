@@ -10,7 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 export class ProjectDetailComponent implements OnInit {
 
   project: any;
-
+  error:string;
+  formInfo = {
+    description: ''
+  }
   constructor(private router: Router, private projectSvc: ProjectService, private route: ActivatedRoute) {
   route.params
   .mergeMap( p => projectSvc.getProjectDetail(p.id) )
@@ -19,7 +22,7 @@ export class ProjectDetailComponent implements OnInit {
     this.project=project;
   });}
   ngOnInit() {
-   
+
   }
 
 

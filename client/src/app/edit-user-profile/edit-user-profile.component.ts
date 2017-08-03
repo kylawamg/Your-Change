@@ -17,7 +17,7 @@ export class EditUserProfileComponent implements OnInit {
     city: '',
     country: '',
     email: ''
-    
+
   };
   error: string;
   constructor(private session: SessionService, private router: Router, private loggedin: LoggedinService) { }
@@ -45,6 +45,6 @@ export class EditUserProfileComponent implements OnInit {
     this.user = user;
     this.error = null;
     this.loggedin.checkLogged(user);
-    this.router.navigate(['user/'+this.user._id])
+    this.router.navigate(['user/profile/'+this.user._id])
   }
 }

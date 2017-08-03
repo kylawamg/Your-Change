@@ -21,6 +21,7 @@ import { ShowProjectByTypeComponent } from './show-project-by-type/show-project-
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ShowProjectsByUserComponent } from './show-projects-by-user/show-projects-by-user.component';
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
+import { CreateCommentComponent } from './create-comment/create-comment.component';
 
 
 
@@ -39,7 +40,8 @@ import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.
     ShowProjectByTypeComponent,
     UserProfileComponent,
     ShowProjectsByUserComponent,
-    EditUserProfileComponent
+    EditUserProfileComponent,
+    CreateCommentComponent
   ],
   imports: [
     BrowserModule,

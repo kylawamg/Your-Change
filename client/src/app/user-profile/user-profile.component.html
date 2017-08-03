@@ -3,5 +3,6 @@
 </p>
 <div *ngIf="user">
   <p>{{user.username}}</p>
+  <p>{{user.name}}</p>
   <a [routerLink]="['/user/edit',user._id]">Edit the profile </a>
 </div>

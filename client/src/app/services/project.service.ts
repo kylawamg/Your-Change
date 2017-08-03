@@ -46,5 +46,10 @@ export class ProjectService {
       .map((res) =>res.json())
       .catch(this.handleError);
   }
+  getProjectByUser(creator){
+    return this.http.get(`${baseURL}/project/myprojects/${creator}`, this.options)
+      .map((res) =>res.json())
+      .catch(this.handleError);
+  }
 
 }

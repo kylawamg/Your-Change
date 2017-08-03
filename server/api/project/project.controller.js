@@ -1,6 +1,6 @@
 mongoose = require('mongoose');
 projectModel = require('./project.model');
-
+userModel = require('../user/user.model');
 
 //Get all projects
 exports.getAllProjects = function (req,res,next){
@@ -22,9 +22,21 @@ exports.getAllByType = function(req,res,next){
   });
 };
 
+//Get project filtering by creator
+exports.getAllByUser = function(req,res,next){
+  const id = req.params.creator;
+  projectModel.find({'creator':id})
+  .then(projectList => {res.json(projectList);
+  })
+  .reject(err => { res.status(500).json(err);
+  });
+//todo
+};
+
 // Get project detail by id
 exports.singleProject = function(req,res,next){
-  projectModel.findById(req.params.id)
+  projectModel.findById(req.params.id).populate('creator')
+  .exec()
   .then(projectDetail => {res.json(projectDetail);
   })
   .reject(err => { res.status(500).json(err);
@@ -32,7 +44,7 @@ exports.singleProject = function(req,res,next){
 };
 
 exports.createProject = function(req, res, next) {
-      console.log(req.user);
+
   const newProject = new projectModel({
     creator: req.body.creator,
     title: req.body.title,

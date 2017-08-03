@@ -16,9 +16,9 @@ export class LoginFormComponent implements OnInit {
     username: '',
     password: ''
   };
-  userLogged = new EventEmitter();
+
   error: string;
-  privateData: any = '';
+
 
   constructor(private session: SessionService, private router: Router, private loggedin: LoggedinService) { }
 

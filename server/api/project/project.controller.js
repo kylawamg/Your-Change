@@ -13,7 +13,7 @@ exports.getAllProjects = function (req,res,next){
 
 //Get project filtering by type
 exports.getAllByType = function(req,res,next){
-  console.log(req.params.type);
+
   const typo = req.params.type;
   projectModel.find({'type':typo})
   .then(projectList => {res.json(projectList);
@@ -32,8 +32,9 @@ exports.singleProject = function(req,res,next){
 };
 
 exports.createProject = function(req, res, next) {
+      console.log(req.user);
   const newProject = new projectModel({
-    _creator: req.body._creator,
+    creator: req.body.creator,
     title: req.body.title,
     type: req.body.type,
     address: req.body.address,
@@ -43,7 +44,8 @@ exports.createProject = function(req, res, next) {
     tags: req.body.tags,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
-    vacancies: req.body.vacancies
+    vacancies: req.body.vacancies,
+
   });
 
 	newProject.save()

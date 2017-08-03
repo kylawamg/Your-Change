@@ -9,6 +9,7 @@ const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
 const session         = require("express-session");
 const passport        = require("passport");
+const MongoStore = require('connect-mongo')(session);
 require('./config/passport')(passport);
 var cors = require('cors');
 const urlDB = process.env.MONGO_URL;
@@ -53,7 +54,10 @@ app.use(session({
   secret: "passport-local-strategy",
   resave: true,
   saveUninitialized: true,
-  cookie : { httpOnly: true, maxAge: 2419200000 }
+  cookie : { httpOnly: true, maxAge: 2419200000 },
+  store: new MongoStore({
+        mongooseConnection: mongoose.connection
+    })
 }));
 
 app.use(passport.initialize());

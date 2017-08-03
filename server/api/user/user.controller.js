@@ -135,6 +135,7 @@ exports.logInUser = function(req, res, next) {
   })(req, res, next);
 };
 exports.getUserProfile = function(req,res,next){
+
   User.findById(req.params.id)
   .then(userDetail => {res.json(userDetail);
   })
@@ -151,12 +152,11 @@ exports.logoutUser = function(req, res, next) {
 
 exports.loggedInUser = function(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.status(200).json(req.user);
+     res.status(200).json(req.user);
+  } else {
+    res.status(403).json({
+     message: 'Unauthorized'
+   });
   }
-
-  return res.status(403).json({
-    message: 'Unauthorized'
-  });
-
 
 };

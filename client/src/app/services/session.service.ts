@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,EventEmitter } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -11,6 +11,8 @@ export class SessionService {
 
   options: Object = {withCredentials:true};
   user:object;
+
+
   constructor(private http: Http) { }
 
   handleError(e) {
@@ -36,7 +38,8 @@ export class SessionService {
       .catch(this.handleError);
   }
   getUserProfile (id){
-    return this.http.get(`${baseURL}/user/${id}`, this.options)
+
+    return this.http.get(`${baseURL}/user/profile/${id}`, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
@@ -47,7 +50,7 @@ export class SessionService {
   }
 
   isLoggedIn() {
-    return this.http.get(baseURL+`/user/loggedin`, {withCredentials:true})
+    return this.http.get(baseURL+`/user/loggedin`, this.options)
       .map(res => res.json())
       .catch((err) => this.handleError(err));
   }

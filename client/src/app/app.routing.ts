@@ -16,7 +16,7 @@ export const routes: Routes = [
     children: [
       { path: 'login', component: LoginFormComponent },
       { path: 'signup', component: SignupFormComponent },
-      { path: 'profile/:id  ', component: UserProfileComponent}
+      { path: 'profile/:id', component: UserProfileComponent}
       //    { path: ':id/edit', component: EditComponent }
     ]
   },

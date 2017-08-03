@@ -11,27 +11,28 @@ import { LoggedinService } from './services/loggedin.service';
 export class AppComponent {
   title = 'app';
   user: any;
-  error:any;
-  
-  constructor(private session: SessionService,private router : Router, private loggedin: LoggedinService){
-      loggedin.getEmitter().subscribe((user) => {this.user = user});
+  error: any;
+
+  constructor(private session: SessionService, private router: Router, private loggedin: LoggedinService) {
+    loggedin.getEmitter().subscribe((user) => { this.user = user });
+
   }
   ngOnInit() {
     this.session.isLoggedIn()
-     .subscribe(
-       (user) => this.successCb(user)
-     )}
-
-     logout(){
-    this.session.logout().subscribe(
-       () => {
-         this.successCb(null)
-
-       },
-       (err) => this.errorCb(err));
+      .subscribe(
+      (user) => {this.successCb(user); console.log(user)
+        ;}
+      );
 
   }
 
+  logout() {
+    this.session.logout()
+      .subscribe(
+      () => this.logOutSucess(null),
+      (err) => this.errorCb(err)
+      );
+  }
   errorCb(err) {
     this.error = err;
     this.user = null;
@@ -39,7 +40,12 @@ export class AppComponent {
 
   successCb(user) {
     this.user = user;
+    this.loggedin.checkLogged(user);
     this.error = null;
-    this.router.navigate(['/'])
+  }
+  logOutSucess(user) {
+    this.router.navigate([''])
+    this.loggedin.checkLogged(null);
+    this.user = null;
   }
 }

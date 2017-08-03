@@ -8,7 +8,7 @@ router.post('/signup', controller.createUser);
 router.post('/logout', controller.logoutUser);
 router.get('/loggedin', controller.loggedInUser);
 router.post('/edit/:id', controller.editUser);
-router.get('/:id',controller.getUserProfile);
+router.get('/profile/:id',controller.getUserProfile);
 
 
 

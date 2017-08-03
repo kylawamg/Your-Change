@@ -11,15 +11,13 @@ import { ActivatedRoute } from '@angular/router';
 export class UserProfileComponent implements OnInit {
     user:any;
   constructor(private route: ActivatedRoute,private session: SessionService,private router : Router, private loggedin: LoggedinService) {
-
-    route.params
-  .mergeMap( p => session.getUserProfile(p.id) )
-  .subscribe( user => {
-
-    this.user=user;
-  });}
-
+}
   ngOnInit() {
+    this.route.params
+    .subscribe((params) => {
+      console.log(params);
+      this.session.getUserProfile(params.id).subscribe( user => this.user = user);
+    })
   }
 
 }

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const projectSchema = new Schema({
-  _creator: {type:mongoose.Schema.Types.ObjectId, ref:'User'},
+  creator: {type:mongoose.Schema.Types.ObjectId, ref:'User'},
   title: String,
   type: {
     type: String,

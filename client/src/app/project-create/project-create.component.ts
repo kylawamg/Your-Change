@@ -10,6 +10,7 @@ import { ProjectService } from '../services/project.service';
 })
 export class ProjectCreateComponent implements OnInit {
   project:any;
+  user:any;
   formInfo = {
     title: '',
     type: '',
@@ -19,15 +20,22 @@ export class ProjectCreateComponent implements OnInit {
     tags: [],
     startDate: '',
     endDate: '',
-    vacancies: ''
+    vacancies: '',
+    creator: ''
   };
+
   error:string;
-  constructor(private router:Router, private projectSvc:ProjectService) { }
+  constructor(private router:Router, private projectSvc:ProjectService, private session:SessionService, private loggedin: LoggedinService) {
+
+   }
 
   ngOnInit() {
+    this.session.isLoggedIn().subscribe( user => this.successCbUser(user));
+    this.loggedin.getEmitter().subscribe(user => this.successCbUser(user));
   }
-  createProject() {
 
+  createProject() {
+    this.formInfo.creator = this.user._id
     this.projectSvc.createNewProject(this.formInfo)
       .subscribe(
         (project) => this.successCb(project),
@@ -35,6 +43,11 @@ export class ProjectCreateComponent implements OnInit {
     );
   }
 
+  successCbUser(val) {
+    this.user = val;
+    this.error = null;
+
+  }
   errorCb(err) {
     this.error = err;
     console.log(this.error)

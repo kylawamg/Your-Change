@@ -11,6 +11,7 @@ import { UserComponent } from './user/user.component';
 import { SessionService } from "./services/session.service";
 import { LoggedinService } from './services/loggedin.service';
 import { ProjectService } from './services/project.service';
+import { CommentService } from './services/comment.service';
 import { routes } from './app.routing';
 import { CommentComponent } from './comment/comment.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
@@ -21,7 +22,6 @@ import { ShowProjectByTypeComponent } from './show-project-by-type/show-project-
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ShowProjectsByUserComponent } from './show-projects-by-user/show-projects-by-user.component';
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
-import { CreateCommentComponent } from './create-comment/create-comment.component';
 
 
 
@@ -40,8 +40,7 @@ import { CreateCommentComponent } from './create-comment/create-comment.componen
     ShowProjectByTypeComponent,
     UserProfileComponent,
     ShowProjectsByUserComponent,
-    EditUserProfileComponent,
-    CreateCommentComponent
+    EditUserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +49,7 @@ import { CreateCommentComponent } from './create-comment/create-comment.componen
     RouterModule.forRoot(routes),
 
   ],
-  providers: [SessionService, LoggedinService,ProjectService],
+  providers: [SessionService, LoggedinService,ProjectService,CommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

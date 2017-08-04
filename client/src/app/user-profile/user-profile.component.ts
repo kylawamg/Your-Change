@@ -10,13 +10,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
     user:any;
+    userSession:any;
   constructor(private route: ActivatedRoute,private session: SessionService,private router : Router, private loggedin: LoggedinService) {
 }
   ngOnInit() {
     this.route.params
     .subscribe((params) => {
       console.log(params);
-      this.session.getUserProfile(params.id).subscribe( user => this.user = user);
+      this.session.getUserProfile(params.id).subscribe( user => {
+        console.log(user);
+        
+        this.user = user});
     })
   }
 

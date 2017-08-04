@@ -11,17 +11,30 @@
         <h3>{{project.type}}</h3>
         <p>{{project.description}}</p>
         <p> {{project.creator.username}}</p>
+
+        <h2>Comments</h2>
+        <div *ngIf="comments?.length > 0">
+          <div >
+            <p  *ngFor="let comment of comments">
+              Contenido:  {{comment.content}}
+            <span>Autor: {{comment.creator.username}}</span>
+            </p>
+          </div>
+
+
+        </div>
+
         <form>
           <div class="field">
             <div class="control">
-              <textarea class="textarea is-primary" [(ngModel)]="formInfo.description" name="description" type="text" placeholder="Comment..."></textarea>
+              <textarea class="textarea is-primary" [(ngModel)]="formInfo.content" name="content" type="text" placeholder="Comment..."></textarea>
             </div>
           </div>
           <div class="field">
             <p class="control">
-              <a [routerLink]="['/comments/new',project._id]"><button class="button is-success">
+              <button class="button is-success" (click)="createComment()">
                       Create comment
-                    </button></a>
+                    </button>
 
             </p>
           </div>

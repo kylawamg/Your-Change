@@ -24,7 +24,7 @@ exports.createComment = function(req, res, next) {
     console.log(comment);
 		projectModel.findByIdAndUpdate(newComment.project,{ $push:{comments: comment._id }})
 			.then(project=>{
-			return res.status(201).json(project);
+			return res.status(201).json(comment);
 		});
 	});
   /*

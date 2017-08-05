@@ -1,3 +1,44 @@
 <p>
   home works!
 </p>
+<div class="parallax">
+  <div class="caption">
+    <h1>Make the change happens</h1>
+
+    <a class="button is-info is-outlined" [routerLink]="['/user/signup']">Join now</a>
+  </div>
+</div>
+<div class="container">
+  <div class="home-content">
+    <h1 class="title is-2">What you can choose</h1>
+    <br>
+    <div class="columns">
+        <div class="column is-one-third">
+          <div class="box info-box">
+            <img class="volunteer-box-img"src="http://www.waterville-me.gov/wp-content/uploads/2017/06/volunteer-hands.jpg" alt="">
+            <p>Choose your cause, your province, your availability ... and take the first step to change! Hundreds of volunteer options from Spanish NGOs are waiting for you.</p>
+            <h3 class="subtitle is-4"><a  class="button is-outlined" [routerLink]="['projects/type', 'onSite']"> Show onsite projects </a></h3>
+          </div>
+        </div>
+        <div class="column">
+          <div class="box info-box">
+            <img class="volunteer-box-img"src="http://noticias.universia.es/net/images/cultura/1/10/10-/10-oportunidades-de-voluntariado-internacional.jpg" alt="">
+            <p>Meet another culture, participate in projects on the ground, approach other realities, hundreds of international volunteer opportunities are waiting for you, find yours.</p>
+            <h3 class="subtitle is-4"><a  class="button is-outlined" [routerLink]="['projects/type','online']"> Show international projects </a></h3>
+          </div>
+        </div>
+        <div class="column">
+          <div class="box info-box">
+            <img class="volunteer-box-img"src="http://www.mividafreelance.com/wp-content/uploads/2013/11/voluntario-virtual-mi-vida-freelance.jpg" alt="virtual-volunteer">
+            <p>That distance and time are no excuse! ... if you have a computer and internet connection, you can volunteer too and apply your knowledge and skills.</p>
+            <br>
+            <h3 class="subtitle is-4"><a  class="button is-outlined" [routerLink]="['projects/type','international']"> Show online projects </a></h3>
+          </div>
+
+        </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<h3 *ngIf="user">Welcome {{user.username}}</h3>

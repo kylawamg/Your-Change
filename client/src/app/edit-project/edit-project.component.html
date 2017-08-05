@@ -1,3 +1,77 @@
 <p>
   edit-project works!
 </p>
+
+<div class="columns is-centered">
+  <div class="column is-4">
+    <h1>Create a new project</h1>
+    <form>
+      <div class="field">
+        <label class="label">Title</label>
+        <p class="control">
+          <input class="input" type="text" [(ngModel)]="formInfo.title" name="title" placeholder="Title">
+        </p>
+      </div>
+      <div class="field">
+        <label class="label">Location</label>
+        <p class="control">
+          <input class="input" type="text" [(ngModel)]="formInfo.address" name="address" placeholder="Location">
+        </p>
+      </div>
+      <div class="field">
+        <label class="label">Profile</label>
+        <p class="control">
+          <input class="input" type="text" [(ngModel)]="formInfo.profile" name="profile" placeholder="Profile">
+        </p>
+      </div>
+      <div class="field">
+        <label class="label">Vacancies</label>
+        <p class="control">
+          <input class="input" type="number" [(ngModel)]="formInfo.vacancies" name="vacancies" placeholder="Nº Vacancies">
+        </p>
+      </div>
+      <label for="">DeadLine</label>
+       <input [(ngModel)]="formInfo.deadLine" type="date" name="deadLine">
+       <label for="">Start</label>
+        <input [(ngModel)]="formInfo.startDate"  type="date" name="startDate">
+        <label for="">End</label>
+         <input [(ngModel)]="formInfo.endDate" type="date" name="endDate">
+         <div class="field">
+     <label class="label">Type</label>
+     <div class="control">
+       <div class="select">
+         <select [(ngModel)]="formInfo.type" name="type">
+           <option>On Site</option>
+           <option>online</option>
+            <option>international</option>
+         </select>
+       </div>
+     </div>
+   </div>
+   <div class="field">
+  <label class="label">Tags</label>
+  <div class="control">
+    <div class="select is-multiple">
+      <select multiplie size="2" [(ngModel)]="formInfo.tags" name="tags">
+        <option>Animales</option>
+        <option>Comunidad</option>
+      </select>
+    </div>
+  </div>
+</div>
+      <div class="field">
+  <div class="control">
+    <textarea class="textarea is-primary" [(ngModel)]="formInfo.description" name="description" type="text" placeholder="Description"></textarea>
+  </div>
+</div>
+<div class="field">
+  <p class="control">
+    <button class="button is-success" (click)="edit()">
+  Edit
+</button>
+  </p>
+</div>
+  <p class="error"> {{ error }} </p>
+    </form>
+  </div>
+</div>

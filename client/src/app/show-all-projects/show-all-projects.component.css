@@ -1,0 +1,39 @@
+.home-content{
+  margin-top: 100px;
+}
+.media{
+  position:relative;
+}
+.img-post{
+  width: 250px;
+}
+.am{
+display: block;
+border-bottom: 0.3px solid black;
+
+}
+
+#creator {
+  position: absolute;
+  bottom:0px;
+}
+
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+    .img-post{
+      width: 150px;
+    }
+
+}
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .img-post{
+      width: 150px;
+    }
+}

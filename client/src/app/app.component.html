@@ -1,6 +1,6 @@
-<nav class="navbar ">
+<nav class="navbar .is-fixed-top">
   <div class="navbar-brand">
-    <a class="navbar-item" href="#">
+    <a class="navbar-item" [routerLink]="['/']">
         yourChange
     </a>
     <div class="navbar-burger burger" data-target="navMenuExample">
@@ -13,26 +13,30 @@
     <div class="navbar-start">
     </div>
     <div class="navbar-end">
+
+
+      <a class="navbar-item" [routerLink]="['projects','all']">Projects</a>
+      <a class="navbar-item" [routerLink]="['/']">NonProfits</a>
       <a *ngIf="!user" class="navbar-item" [routerLink]="['/user/login']">
       <span class="icon is-small is-left"> <i class="fa fa-sign-in"></i></span>Login</a>
       <a *ngIf="!user" class="navbar-item" [routerLink]="['/user/signup']">
       <span class="icon is-small is-left"> <i class="fa fa-user-plus"></i></span>Signup</a>
       <div *ngIf="user" class="navbar-item has-dropdown is-hoverable">
-        <a href=""class="navbar-item" >  <span class="icon is-small is-left"> <i class="fa fa-cog"></i></span></a>
-          <div class="navbar-dropdown ">
-            <a class="navbar-item" [routerLink]="['/user/profile',user._id]">
+        <a href="" class="navbar-item">  <span class="icon is-small is-left"> <i class="fa fa-cog"></i></span></a>
+        <div class="navbar-dropdown ">
+          <a class="navbar-item" [routerLink]="['/user/profile',user._id]">
               My Profile
             </a>
-            <a class="navbar-item " [routerLink]="['/projects/myprojects',user._id]">
+          <a class="navbar-item " [routerLink]="['/projects/myprojects',user._id]">
               My projects
           </a>
           <a class="navbar-item " href="/documentation/overview/start/">
             Messages
           </a>
-          <a *ngIf="user.type=='ONG'"class="navbar-item " [routerLink]="['/projects/new']"href="/documentation/overview/start/">
+          <a *ngIf="user.type=='ONG'" class="navbar-item " [routerLink]="['/projects/new']" href="/documentation/overview/start/">
             Create Project
           </a>
-          </div>
+        </div>
       </div>
       <a *ngIf="user" class="navbar-item" (click)="logout()">
           <span class="icon is-small is-left">
@@ -43,10 +47,22 @@
     </div>
   </div>
 </nav>
-<h3 *ngIf="user">Welcome {{user.username}}</h3>
-  <a [routerLink]="['projects','all']"> Show all projects </a>
 
-  <a [routerLink]="['projects/type', 'onSite']"> Show onsite projects </a>
-  <a [routerLink]="['projects/type','online']"> Show all projects </a>
-  <a [routerLink]="['projects/type','international']"> Show all projects </a>
 <router-outlet></router-outlet>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        Bulma by <a href="http://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC ANS 4.0</a>.
+      </p>
+      <p>
+        <a class="icon" href="https://github.com/jgthms/bulma">
+          <i class="fa fa-github"></i>
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>

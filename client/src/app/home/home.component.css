@@ -1,0 +1,41 @@
+
+.parallax {
+    /* The image used */
+    background-image: url("http://volunteerinternational.org/wp-content/uploads/2014/12/gcn_homeslider.jpg");
+    position:relative;
+    /* Set a specific height */
+
+    height: 70vh;
+    width: 100vw;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.caption  {
+  position: absolute;
+  top:50%;
+  left: 10%;
+  color: #fff;
+  font-size: 30px;
+}
+.home-content {
+  margin-top: 1%;
+  text-align: center;
+}
+.column{
+
+  padding:0px 10px 10px 10px;
+}
+.info-box {
+  text-align: center;
+
+}
+.volunteer-box-img{
+  width: 90%;
+  height: 200px;
+}
+.info-box > .button.is-outlined {
+  color:red;
+}

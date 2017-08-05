@@ -8,9 +8,7 @@
     <div class="column is-4">
       <div class="box">
         <div *ngIf="user._id == project.creator._id">
-          <button class="button is-success" (click)="createComment()">
-                  Edit Project
-          </button>
+              <a [routerLink]="['/projects/edit/', project._id]">Edit </a>
         </div>
 
         <h1>{{project.title}}</h1>

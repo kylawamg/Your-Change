@@ -1,0 +1,19 @@
+.home-content{
+  margin-top: 100px;
+}
+.media{
+  position:relative;
+}
+.img-post{
+  width: 250px;
+}
+.am{
+display: block;
+border-bottom: 0.3px solid black;
+
+}
+
+#creator {
+  position: absolute;
+  bottom:0px;
+}

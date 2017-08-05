@@ -23,6 +23,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ShowProjectsByUserComponent } from './show-projects-by-user/show-projects-by-user.component';
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
+import { ShowOngsComponent } from './show-ongs/show-ongs.component';
 
 
 
@@ -42,7 +43,8 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
     UserProfileComponent,
     ShowProjectsByUserComponent,
     EditUserProfileComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    ShowOngsComponent
   ],
   imports: [
     BrowserModule,

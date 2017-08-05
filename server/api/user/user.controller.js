@@ -150,6 +150,20 @@ exports.logoutUser = function(req, res, next) {
   });
 };
 
+exports.getOngs = function(req,res,next){
+  User.findById(req.params.type)
+  .then(ongs => {res.json(ongs);
+  })
+  .reject(err => { res.status(500).json(err);
+  });
+};
+
+exports.logoutUser = function(req, res, next) {
+  req.logout();
+  res.status(200).json({
+    message: 'Success'
+  });
+};
 exports.loggedInUser = function(req, res, next) {
   if (req.isAuthenticated()) {
      res.status(200).json(req.user);

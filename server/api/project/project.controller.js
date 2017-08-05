@@ -68,6 +68,7 @@ exports.createProject = function(req, res, next) {
 };
 
 exports.editProject = function(req, res ,next) {
+
   const updates = {
     title:         req.body.title,
     type:          req.body.type,
@@ -82,7 +83,8 @@ exports.editProject = function(req, res ,next) {
   };
   projectModel.findByIdAndUpdate(req.params.id, updates, (err) => {
     if (err) {
-      return res.status(400).json({ message: "Unable to update project", error});
+      console.log(err);
+      return res.status(400).json({ message: "Unable to update project", err});
     }
     res.json({ message: 'Project updated successfully'});
   });

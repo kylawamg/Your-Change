@@ -11,7 +11,7 @@ import { ShowProjectByTypeComponent} from './show-project-by-type/show-project-b
 import { UserProfileComponent} from './user-profile/user-profile.component';
 import { ShowProjectsByUserComponent} from './show-projects-by-user/show-projects-by-user.component';
 import { EditUserProfileComponent} from './edit-user-profile/edit-user-profile.component';
-
+import { EditProjectComponent } from './edit-project/edit-project.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   {
@@ -19,7 +19,7 @@ export const routes: Routes = [
     children: [
       { path: 'login', component: LoginFormComponent },
       { path: 'signup', component: SignupFormComponent },
-      { path: 'profile/:id', component: UserProfileComponent},
+      { path: 'profile/:id', component: UserProfileComponent },
       { path: 'edit/:id', component: EditUserProfileComponent }
     ]
   },
@@ -30,11 +30,10 @@ export const routes: Routes = [
       { path: 'all', component: ShowAllProjectsComponent },
       { path: 'myprojects/:creator', component: ShowProjectsByUserComponent },
       { path: 'detail/:id', component: ProjectDetailComponent },
-      { path: 'type/:type', component: ShowProjectByTypeComponent }
-
-      //    { path: ':id/edit', component: EditComponent }
+      { path: 'type/:type', component: ShowProjectByTypeComponent },
+      { path: 'edit/:id', component: EditProjectComponent }
     ]
   },
-//  { path: 'comments/new', component: CreateCommentComponent },
+  //  { path: 'comments/new', component: CreateCommentComponent },
   { path: '**', redirectTo: '' }
 ];

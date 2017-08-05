@@ -5,3 +5,19 @@
   max-width: 100%;
   overflow-x: hidden;
 }
+
+.navbar {
+  background: #fff;
+  border-bottom: 0.3px solid  #898989;
+  color: #898989;
+  position: fixed !important; top: 0; left: 0; right: 0;
+  z-index:1;
+}
+
+.navbar-item:hover{
+  color: #0086c5;
+}
+footer{
+  background: #252525;
+  color: #fff;
+}

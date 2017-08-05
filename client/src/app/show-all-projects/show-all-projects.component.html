@@ -1,10 +1,65 @@
-<h3> Projects list </h3>
-<div>
-  <div *ngFor="let project of projects | async" class="blocky">
 
-    <h2>Title {{ project.title }} </h2>
-    <p>Description: {{ project.description }} </p>
-    <p>Creator: {{ project.creator.username}}</p>
-    <a [routerLink]="['/projects/detail',project._id]"> View Details </a>
+<div class="container">
+  <div class="home-content">
+    <div class="columns is-centered">
+      <div class="column is-11">
+        <h1 class="title is-2 tittle-all-projects">Find your project</h1>
+
+      </div>
+
+    </div>
+
+      <br>
+      <div *ngFor="let project of projects | async; let i = index">
+        <div class="columns is-centered">
+            <div class="column is-11">
+              <div class="box">
+              <article class="media">
+  <figure class="media-left">
+    <p class="">
+      <img class="img-post" src="http://www.waterville-me.gov/wp-content/uploads/2017/06/volunteer-hands.jpg" alt="">
+
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+
+          <h3 class="is-size-4 am">{{project.title}}</h3>
+
+
+
+          <p class="">
+
+
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+      </p>
+    </div>
+    <nav id="creator"class="level is-mobile">
+      <div class="level-left">
+        <a class="level-item">
+          <p>Organization: {{project.creator.name}}</p>
+        </a>
+        <a class="level-item">
+            <p>Organization: {{project.creator.name}}</p>
+        </a>
+        <a class="level-item">
+            <p>Organization: {{project.creator.name}}</p>
+        </a>
+      </div>
+    </nav>
   </div>
+
+</article>
 </div>
+
+            </div>
+
+        </div>
+
+
+
+      </div>
+
+
+<br>

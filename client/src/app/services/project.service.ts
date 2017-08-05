@@ -31,7 +31,7 @@ export class ProjectService {
       .map(res => res.json())
       .catch(this.handleError);
   }
-  editProject(id) {
+  editProject(project,id) {
     return this.http.put(`${baseURL}/project/edit/${id}`, this.options)
       .map((res) => res.json())
       .catch(this.handleError);

@@ -16,7 +16,7 @@
 
 
       <a class="navbar-item" [routerLink]="['projects','all']">Projects</a>
-      <a class="navbar-item" [routerLink]="['/']">NonProfits</a>
+      <a class="navbar-item" [routerLink]="['user/type','ONG']">NonProfits</a>
       <a *ngIf="!user" class="navbar-item" [routerLink]="['/user/login']">
       <span class="icon is-small is-left"> <i class="fa fa-sign-in"></i></span>Login</a>
       <a *ngIf="!user" class="navbar-item" [routerLink]="['/user/signup']">

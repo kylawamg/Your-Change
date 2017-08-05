@@ -43,6 +43,12 @@ export class SessionService {
       .map(res => res.json())
       .catch(this.handleError);
   }
+  getOngs(type){
+    console.log("type on service " + type);
+    return this.http.get(`${baseURL}/user/type/${type}`, this.options)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
   logout() {
     return this.http.post(`${baseURL}/user/logout`,{},this.options)
       .map(res => res.json())

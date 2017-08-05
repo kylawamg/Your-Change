@@ -12,6 +12,7 @@ import { UserProfileComponent} from './user-profile/user-profile.component';
 import { ShowProjectsByUserComponent} from './show-projects-by-user/show-projects-by-user.component';
 import { EditUserProfileComponent} from './edit-user-profile/edit-user-profile.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
+import { ShowOngsComponent } from './show-ongs/show-ongs.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   {
@@ -20,7 +21,8 @@ export const routes: Routes = [
       { path: 'login', component: LoginFormComponent },
       { path: 'signup', component: SignupFormComponent },
       { path: 'profile/:id', component: UserProfileComponent },
-      { path: 'edit/:id', component: EditUserProfileComponent }
+      { path: 'edit/:id', component: EditUserProfileComponent },
+      { path: 'type/:type', component: ShowOngsComponent },
     ]
   },
   {

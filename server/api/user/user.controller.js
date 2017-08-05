@@ -151,7 +151,9 @@ exports.logoutUser = function(req, res, next) {
 };
 
 exports.getOngs = function(req,res,next){
-  User.findById(req.params.type)
+  const typo = req.params.id;
+  console.log(req.params);
+  User.find({'type':typo})
   .then(ongs => {res.json(ongs);
   })
   .reject(err => { res.status(500).json(err);

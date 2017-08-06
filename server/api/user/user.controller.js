@@ -3,7 +3,7 @@ mongoose = require('mongoose');
 const express = require("express");
 const authController = express.Router();
 const passport = require("passport");
-
+const upload = require('../../config/multer');
 // Our user model
 const User = require("./user.model");
 
@@ -29,6 +29,7 @@ exports.editUser = function(req, res, next) {
     email
   };
 
+
   const criteria = {
     _id: _id
   };
@@ -42,7 +43,7 @@ exports.editUser = function(req, res, next) {
     }
   };
 
-
+//  if (req.file) update.picPath = `/uploads/${req.file.filename}`;
 
   User.updateOne(criteria, update, function(err, user) {
     if (err) return next(err);
@@ -91,7 +92,9 @@ exports.createUser = function(req, res, next) {
       country,
       address
     });
-    console.log(newUser);
+    console.log(req.file);
+  //  if (req.file) newUser.picPath = `/uploads/${req.file.filename}`;
+      if (req.file) newUser.picPath = req.file.path;
     newUser.save((err) => {
       if (err) {
 

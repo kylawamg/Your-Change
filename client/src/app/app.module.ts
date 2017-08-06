@@ -24,7 +24,7 @@ import { ShowProjectsByUserComponent } from './show-projects-by-user/show-projec
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { ShowOngsComponent } from './show-ongs/show-ongs.component';
-
+import { FileSelectDirective } from "ng2-file-upload";
 
 
 @NgModule({
@@ -44,7 +44,8 @@ import { ShowOngsComponent } from './show-ongs/show-ongs.component';
     ShowProjectsByUserComponent,
     EditUserProfileComponent,
     EditProjectComponent,
-    ShowOngsComponent
+    ShowOngsComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

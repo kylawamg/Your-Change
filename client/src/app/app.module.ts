@@ -25,7 +25,7 @@ import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { ShowOngsComponent } from './show-ongs/show-ongs.component';
 import { FileSelectDirective } from "ng2-file-upload";
-
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,9 @@ import { FileSelectDirective } from "ng2-file-upload";
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
-
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAguIL3iSMULstjCCoXrKnz1xgwcsbB8so'
+    })
   ],
   providers: [SessionService, LoggedinService,ProjectService,CommentService],
   bootstrap: [AppComponent]

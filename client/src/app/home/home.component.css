@@ -39,3 +39,6 @@
 .info-box > .button.is-outlined {
   color:red;
 }
+agm-map {
+  height: 300px;
+}

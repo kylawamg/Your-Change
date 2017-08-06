@@ -27,47 +27,69 @@
         </p>
       </div>
       <label for="">DeadLine</label>
-       <input [(ngModel)]="formInfo.deadLine" type="date" name="deadLine">
-       <label for="">Start</label>
-        <input [(ngModel)]="formInfo.startDate"  type="date" name="startDate">
-        <label for="">End</label>
-         <input [(ngModel)]="formInfo.endDate" type="date" name="endDate">
-         <div class="field">
-     <label class="label">Type</label>
-     <div class="control">
-       <div class="select">
-         <select [(ngModel)]="formInfo.type" name="type">
+      <input [(ngModel)]="formInfo.deadLine" type="date" name="deadLine">
+      <label for="">Start</label>
+      <input [(ngModel)]="formInfo.startDate" type="date" name="startDate">
+      <label for="">End</label>
+      <input [(ngModel)]="formInfo.endDate" type="date" name="endDate">
+      <div class="field">
+        <label class="label">Type</label>
+        <div class="control">
+          <div class="select">
+            <select [(ngModel)]="formInfo.type" name="type">
            <option>On Site</option>
            <option>online</option>
             <option>international</option>
          </select>
-       </div>
-     </div>
-   </div>
-   <div class="field">
-  <label class="label">Tags</label>
-  <div class="control">
-    <div class="select is-multiple">
-      <select multiplie size="2" [(ngModel)]="formInfo.tags" name="tags">
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Tags</label>
+        <div class="control">
+          <div class="select is-multiple">
+            <select multiplie size="2" [(ngModel)]="formInfo.tags" name="tags">
         <option>Animales</option>
         <option>Comunidad</option>
       </select>
-    </div>
-  </div>
-</div>
+          </div>
+        </div>
+      </div>
       <div class="field">
-  <div class="control">
-    <textarea class="textarea is-primary" [(ngModel)]="formInfo.description" name="description" type="text" placeholder="Description"></textarea>
-  </div>
-</div>
-<div class="field">
-  <p class="control">
-    <button class="button is-success" (click)="createProject()">
+        <div class="control">
+          <textarea class="textarea is-primary" [(ngModel)]="formInfo.description" name="description" type="text" placeholder="Description"></textarea>
+        </div>
+      </div>
+      <!-- GOOGLE MAPS PLACES TRY-->
+
+      <div class="container">
+        <div class="form-group">
+          <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl" size="100">
+        </div>
+
+        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+          <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+        </agm-map>
+
+        <div class="card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">formatted_address <code>{{formatted_address}}</code></li>
+            <li class="list-group-item">latitude <code>{{latitude}}</code></li>
+            <li class="list-group-item">longitude <code>{{longitude}}</code></li>
+            <li class="list-group-item">zoom <code>{{zoom}}</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- END GOOGLE MAPS-->
+      <div class="field">
+        <p class="control">
+          <button class="button is-success" (click)="createProject()">
   Signup
 </button>
-  </p>
-</div>
-  <p class="error"> {{ error }} </p>
+        </p>
+      </div>
+      <p class="error"> {{ error }} </p>
     </form>
   </div>
 </div>

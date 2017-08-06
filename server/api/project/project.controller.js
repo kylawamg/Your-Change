@@ -46,7 +46,7 @@ exports.singleProject = function(req,res,next){
 };
 
 exports.createProject = function(req, res, next) {
-
+    console.log(req.body.position);
   const newProject = new projectModel({
     creator: req.body.creator,
     title: req.body.title,
@@ -59,12 +59,15 @@ exports.createProject = function(req, res, next) {
     startDate: req.body.startDate,
     endDate: req.body.endDate,
     vacancies: req.body.vacancies,
+    position:{ longitud: req.body.position.longitud,
+    latitud: req.body.position.latitud}
 
   });
 
 	newProject.save()
       .then( project => {res.json({ message: 'New Project created!', id: newProject._id });})
-      .catch( err => {res.status(500).json({error:err, message:"Cannot create the project"}); });
+      .catch( err => {res.status(500).json({error:err, message:"Cannot create the project"});
+    console.log(err);});
 };
 
 exports.editProject = function(req, res ,next) {

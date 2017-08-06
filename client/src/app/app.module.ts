@@ -26,7 +26,8 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
 import { ShowOngsComponent } from './show-ongs/show-ongs.component';
 import { FileSelectDirective } from "ng2-file-upload";
 import { AgmCoreModule } from '@agm/core';
-
+import {} from '@types/googlemaps';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,10 +51,12 @@ import { AgmCoreModule } from '@agm/core';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAguIL3iSMULstjCCoXrKnz1xgwcsbB8so'
+      apiKey: 'AIzaSyAguIL3iSMULstjCCoXrKnz1xgwcsbB8so',
+      libraries: ["places"]
     })
   ],
   providers: [SessionService, LoggedinService,ProjectService,CommentService],

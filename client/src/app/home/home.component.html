@@ -40,10 +40,10 @@
   </div>
 </div>
 <br>
-<div class="container">
-  <agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-    <agm-marker [latitude]="lat1" [longitude]="lng1"></agm-marker>
-  </agm-map>
-</div>
+<agm-map *ngFor="let location of locations"[latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="location.position.latitud" [longitude]="location.position.longitud"></agm-marker>
+
+</agm-map>
+
+
 <h3 *ngIf="user">Welcome {{user.username}}</h3>

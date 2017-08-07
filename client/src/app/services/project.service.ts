@@ -52,5 +52,10 @@ export class ProjectService {
       .map((res) =>res.json())
       .catch(this.handleError);
   }
+  getProjectsLocation(){
+    return this.http.get(`${baseURL}/project/`, this.options)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
 
 }

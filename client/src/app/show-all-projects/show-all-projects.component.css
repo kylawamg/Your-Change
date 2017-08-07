@@ -12,21 +12,27 @@ display: block;
 border-bottom: 0.3px solid black;
 
 }
-
+.left {
+  margin-right: 10px;
+}
 #creator {
   position: absolute;
   bottom:0px;
 }
-
+.readmore{
+  float:right;
+}
 @media only screen
   and (min-device-width: 320px)
   and (max-device-width: 568px)
   and (-webkit-min-device-pixel-ratio: 2) {
 
     .img-post{
-      width: 150px;
+      width: 100px;
     }
-
+    .author-name {
+      display:none;
+    }
 }
 /* Portrait and Landscape */
 @media only screen
@@ -34,6 +40,9 @@ border-bottom: 0.3px solid black;
   and (max-device-width: 667px)
   and (-webkit-min-device-pixel-ratio: 2) {
     .img-post{
-      width: 150px;
+      width: 100px;
+    }
+    .author-name {
+      display:none;
     }
 }

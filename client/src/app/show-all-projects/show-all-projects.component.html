@@ -14,37 +14,32 @@
         <div class="column is-11">
           <div class="box">
             <article class="media">
-              <figure class="media-left">
-                <p class="">
+              <figure class="left">
+
                   <img class="img-post" src="http://www.waterville-me.gov/wp-content/uploads/2017/06/volunteer-hands.jpg" alt="">
 
-                </p>
+
               </figure>
               <div class="media-content">
                 <div class="content">
 
-                <a [routerLink]="['/projects/detail',project._id]"><h3 class="is-size-4 am">{{project.title}}</h3></a>  
+                <a [routerLink]="['/projects/detail',project._id]"><h3 class="is-size-4 am">{{project.title}}</h3></a>
 
 
 
                   <p class="">
+                  {{project.description | slice:0:50}}
 
 
-
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
                   </p>
+                    <a class="readmore"[routerLink]="['/projects/detail',project._id]">Read more...</a>
                 </div>
                 <nav id="creator" class="level">
                   <div class="level-left">
-                    <a class="level-item">
-                      <p>Organization: {{project.creator.name}}</p>
+                    <a [routerLink]="['/user/profile',project.creator._id]" class="level-item">
+                      <p class="author-name">Organization: {{project.creator.name}}</p>
                     </a>
-                    <a class="level-item">
-                      <p>Organization: {{project.creator.name}}</p>
-                    </a>
-                    <a class="level-item">
-                      <p>Organization: {{project.creator.name}}</p>
-                    </a>
+
                   </div>
                 </nav>
               </div>

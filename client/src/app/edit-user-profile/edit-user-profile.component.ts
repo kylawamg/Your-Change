@@ -41,6 +41,7 @@ export class EditUserProfileComponent implements OnInit {
     };
   }
   edit() {
+    console.log("entra");
     this.uploader.onBuildItemForm = (item, form) => {
       form.append('name', this.formInfo.name);
       form.append('address', this.formInfo.address);

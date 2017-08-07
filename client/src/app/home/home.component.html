@@ -40,8 +40,21 @@
   </div>
 </div>
 <br>
-<agm-map *ngFor="let location of locations"[latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="location.position.latitud" [longitude]="location.position.longitud"></agm-marker>
+
+
+
+<agm-map [latitude]="40.4167278" [longitude]="-3.7033387000000175">
+  <div *ngFor="let location of locations">
+      <agm-marker *ngIf="location.position"  [latitude]="location.position.latitud" [longitude]="location.position.longitud">
+        <agm-info-window [disableAutoPan]="true">
+*          <a [routerLink]="['/projects/detail',location._id]">{{location.title}}</a>
+*        </agm-info-window>
+      </agm-marker>
+
+
+
+  </div>
+
 
 </agm-map>
 

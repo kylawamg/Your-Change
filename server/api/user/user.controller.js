@@ -13,9 +13,9 @@ const bcryptSalt = 10;
 
 exports.editUser = function(req, res, next) {
   var _id = req.params.id;
-  var username = req.body.username;
+
   var name = req.body.name;
-  var lastName = req.body.lastName;
+
   var city = req.body.city;
   var country = req.body.country;
   var email = req.body.email;
@@ -43,8 +43,8 @@ exports.editUser = function(req, res, next) {
     }
   };
 
-//  if (req.file) update.picPath = `/uploads/${req.file.filename}`;
-
+  if (req.file) update.picPath = `/uploads/${req.file.filename}`;
+console.log(update);
   User.updateOne(criteria, update, function(err, user) {
     if (err) return next(err);
     res.status(200).json(req.user);

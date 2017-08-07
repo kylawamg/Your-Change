@@ -1,7 +1,8 @@
+<div class="wrapper-profile">
 <div class="columns  is-centered">
-  <div class="column is-5">
+  <div class="column is-6">
     <div class="box">
-    <h1>Edit your personal information</h1>
+    <h1 class="title is-3">Edit your personal information</h1>
     <br>
     <form>
   <!--    <div class="field is-horizontal">
@@ -75,10 +76,11 @@
           </div>
         </div>
       </div>
-        <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+        <input class="uploadPhoto" type="file" name="file" ng2FileSelect [uploader]="uploader" />
+        <br>
       <div class="field">
         <p class="control">
-          <button class="button is-success" (click)="edit()">
+          <button class="button is-info" (click)="edit()">
         Save
       </button>
         </p>
@@ -87,4 +89,5 @@
     </form>
   </div>
   </div>
+</div>
 </div>

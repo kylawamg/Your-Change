@@ -22,7 +22,7 @@
 }
 .home-content {
   margin-top: 1%;
-  text-align: center;
+
 }
 .column{
 
@@ -40,5 +40,8 @@
   color:red;
 }
 agm-map {
-  height: 300px;
+  height: 400px;
+}
+.container .map{
+  margin-bottom: 100px;
 }

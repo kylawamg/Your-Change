@@ -12,41 +12,32 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 exports.editUser = function(req, res, next) {
+
   var _id = req.params.id;
-
   var name = req.body.name;
-
+  var address = req.body.address;
   var city = req.body.city;
   var country = req.body.country;
   var email = req.body.email;
 
-
-  const user = {
-    name,
-    lastName,
-    city,
-    country,
-    email
-  };
-
-
-  const criteria = {
-    _id: _id
-  };
   const update = {
-    $set: {
       name,
-      lastName,
+      address,
       city,
       country,
       email
-    }
   };
-
+console.log(req.file);
   if (req.file) update.picPath = `/uploads/${req.file.filename}`;
+//  if (req.file) update.picPath = `/uploads/${req.file.filename}`;
 console.log(update);
-  User.updateOne(criteria, update, function(err, user) {
-    if (err) return next(err);
+console.log(_id);
+  User.findByIdAndUpdate(_id, update, function(err, user) {
+    if (err) {
+      console.log(err);
+      res.status(500).json({
+        message: 'something went wrong :('
+      });}
     res.status(200).json(req.user);
   });
 
@@ -94,7 +85,7 @@ exports.createUser = function(req, res, next) {
     });
     console.log(req.file);
   //  if (req.file) newUser.picPath = `/uploads/${req.file.filename}`;
-      if (req.file) newUser.picPath = req.file.path;
+      if (req.file) newUser.picPath = `/uploads/${req.file.filename}`;
     newUser.save((err) => {
       if (err) {
 

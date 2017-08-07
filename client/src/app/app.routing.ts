@@ -13,6 +13,9 @@ import { ShowProjectsByUserComponent} from './show-projects-by-user/show-project
 import { EditUserProfileComponent} from './edit-user-profile/edit-user-profile.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { ShowOngsComponent } from './show-ongs/show-ongs.component';
+import { MessagesComponent } from './messages/messages.component';
+import { SendMessageComponent } from './send-message/send-message.component';
+import { ShowMessagesByuserComponent } from './show-messages-byuser/show-messages-byuser.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   {
@@ -36,6 +39,13 @@ export const routes: Routes = [
       { path: 'edit/:id', component: EditProjectComponent }
     ]
   },
+  {path: 'messages', component: MessagesComponent,
+    children: [
+      { path: 'new', component: SendMessageComponent},
+      { path: 'mymessages', component: ShowMessagesByuserComponent}
+    ]
+  },
+
   //  { path: 'comments/new', component: CreateCommentComponent },
   { path: '**', redirectTo: '' }
 ];

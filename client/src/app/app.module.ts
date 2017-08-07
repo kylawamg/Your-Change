@@ -28,6 +28,9 @@ import { FileSelectDirective } from "ng2-file-upload";
 import { AgmCoreModule } from '@agm/core';
 import {} from '@types/googlemaps';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SendMessageComponent } from './send-message/send-message.component';
+import { MessagesComponent } from './messages/messages.component';
+import { ShowMessagesByuserComponent } from './show-messages-byuser/show-messages-byuser.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +49,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     EditUserProfileComponent,
     EditProjectComponent,
     ShowOngsComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    SendMessageComponent,
+    MessagesComponent,
+    ShowMessagesByuserComponent
   ],
   imports: [
     BrowserModule,

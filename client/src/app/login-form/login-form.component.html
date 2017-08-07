@@ -1,37 +1,39 @@
-<div class="columns  is-centered">
-  <div class="column is-4">
-    <div class="box">
-    <h1>Login</h1>
-    <br>
-    <form class="">
-      <div class="field">
-        <p class="control has-icons-left has-icons-right">
-          <input class="input" type="text" [(ngModel)]="formInfo.username" name="username" placeholder="Username">
-          <span class="icon is-small is-left">
+<div class="wrapper-login">
+  <div class="columns  is-centered">
+    <div class="column is-4">
+      <div class="box">
+        <h1 class="title is-3">Login</h1>
+
+        <form class="">
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" type="text" [(ngModel)]="formInfo.username" name="username" placeholder="Username">
+              <span class="icon is-small is-left">
           <i class="fa fa-user"></i>
         </span>
 
-        </p>
-      </div>
+            </p>
+          </div>
 
-      <div class="field">
-        <p class="control has-icons-left">
-          <input class="input" type="password" [(ngModel)]="formInfo.password" name="password" placeholder="Password">
-          <span class="icon is-small is-left">
+          <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" type="password" [(ngModel)]="formInfo.password" name="password" placeholder="Password">
+              <span class="icon is-small is-left">
         <i class="fa fa-lock"></i>
       </span>
-        </p>
-      </div>
-
-      <div class="field">
-        <p class="control">
-          <button class="button is-success" (click)="login()">
+            </p>
+          </div>
+          <br>
+          <div class="field">
+            <p class="control">
+              <button class="button is-info" (click)="login()">
         Login
       </button>
-        </p>
+            </p>
+          </div>
+          <p class="error"> {{ error }} </p>
+        </form>
       </div>
-      <p class="error"> {{ error }} </p>
-    </form>
-  </div>
+    </div>
   </div>
 </div>

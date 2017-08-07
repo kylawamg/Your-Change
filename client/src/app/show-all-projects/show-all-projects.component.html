@@ -15,9 +15,9 @@
           <div class="box">
             <article class="media">
               <figure class="left">
-
+                    <a [routerLink]="['/projects/detail',project._id]">
                   <img class="img-post" src="http://www.waterville-me.gov/wp-content/uploads/2017/06/volunteer-hands.jpg" alt="">
-
+                </a>
 
               </figure>
               <div class="media-content">
@@ -28,22 +28,24 @@
 
 
                   <p class="">
-                  {{project.description | slice:0:50}}
+                  {{project.description | slice:0:70}}
 
 
                   </p>
-                    <a class="readmore"[routerLink]="['/projects/detail',project._id]">Read more...</a>
+
                 </div>
                 <nav id="creator" class="level">
                   <div class="level-left">
+                    <p>Type:  <span> {{project.type}}</span> -</p>
+                    <p>Tags:  <span *ngFor="let tag of project.tags"class="tag is-info"> {{tag}}</span></p>
                     <a [routerLink]="['/user/profile',project.creator._id]" class="level-item">
                       <p class="author-name">Organization: {{project.creator.name}}</p>
                     </a>
+                    <a class="readmore"[routerLink]="['/projects/detail',project._id]">Read more...</a>
 
                   </div>
                 </nav>
               </div>
-
             </article>
           </div>
 

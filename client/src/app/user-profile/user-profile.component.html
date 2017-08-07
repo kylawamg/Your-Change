@@ -1,9 +1,21 @@
-<p>
-  user-profile works!
-</p>
-<div *ngIf="user">
-  <p>{{user.username}}</p>
-  <p>{{user.name}}</p>
-  <img height="300" [src]="'http://localhost:3000/'+user.picPath" />
-  <a [routerLink]="['/user/edit',user._id]">Edit the profile </a>
+<div class="user-info" *ngIf="user">
+  <div class="columns  is-centered">
+    <div class="column is-6">
+      <div class="box">
+        <img class="img-mobile" [src]="'http://localhost:3000'+user.picPath" />
+        <h1 class="title is-5 left">Name: <span class="right">{{user.name}}</span> </h1>
+        <h3 class="title is-5">Lastname: <span class="right">{{user.lastName}}</span> </h3>
+        <h3 class="title is-5">Age: <span class="right">{{user.age}}</span> </h3>
+        <h3 class="title is-5">City: <span class="right">{{user.city}}</span> </h3>
+        <h3 class="title is-5">Country: <span class="right">{{user.country}}</span> </h3>
+        <h3 class="title is-5 left">Description: </h3>
+        <div class="box">
+                <p>{{user.description}}</p>
+        </div>
+        <a *ngIf="userSession && userSession._id == user._id" class="button is-info" [routerLink]="['/user/edit/', user._id]">Edit the profile </a>
+        <a *ngIf="userSession" class="button is-info" [routerLink]="['/messages/new/', user._id]">Direct Message </a>
+
+      </div>
+    </div>
+  </div>
 </div>

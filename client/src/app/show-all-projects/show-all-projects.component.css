@@ -21,6 +21,13 @@ border-bottom: 0.3px solid black;
 }
 .readmore{
   float:right;
+  bottom:0;
+}
+.tag .is-info{
+  margin-left: 5px;
+}
+a{
+  color: #898989;
 }
 @media only screen
   and (min-device-width: 320px)

@@ -14,24 +14,19 @@ exports.getAllMessages = function(req, res, next) {
 };
 // POST
 exports.createMessage = function(req, res, next) {
-
+    console.log("entra en la ruta");
   const newMessage = new messageModel({
     subject: req.body.subject,
     content: req.body.content,
-    from: req.body.from,
-    to: req.body.to
+    to: req.body.to,
+    from: req.body.from
   });
-/*  newMessage.save().then(message=>{
 
-		projectModel.findByIdAndUpdate(newComment.project,{ $push:{comments: comment._id }})
-			.then(project=>{
-			return res.status(201).json(comment);
-		});
-	});*/
+  console.log(newMessage);
 
   newMessage.save((err) => {
     if (err) {
-
+      console.log(err);
       res.status(400).json({
         message: "Something went wrong"
       });
@@ -49,8 +44,9 @@ exports.createMessage = function(req, res, next) {
 };
 
 exports.getMessagesByUser = function(req, res) {
+  console.log("holiii"+req.params.id);
   let userId = req.params.id;
-  commentModel.find({
+  messageModel.find({
       to: userId
     }).populate('from')
     .exec()

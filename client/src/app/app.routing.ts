@@ -41,7 +41,7 @@ export const routes: Routes = [
   },
   {path: 'messages', component: MessagesComponent,
     children: [
-      { path: 'new', component: SendMessageComponent},
+      { path: 'new/:id', component: SendMessageComponent},
       { path: 'mymessages', component: ShowMessagesByuserComponent}
     ]
   },

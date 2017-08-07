@@ -12,6 +12,7 @@ import { SessionService } from "./services/session.service";
 import { LoggedinService } from './services/loggedin.service';
 import { ProjectService } from './services/project.service';
 import { CommentService } from './services/comment.service';
+import { MessageService } from './services/messages.service';
 import { routes } from './app.routing';
 import { CommentComponent } from './comment/comment.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
@@ -65,7 +66,7 @@ import { ShowMessagesByuserComponent } from './show-messages-byuser/show-message
       libraries: ["places"]
     })
   ],
-  providers: [SessionService, LoggedinService,ProjectService,CommentService],
+  providers: [SessionService, LoggedinService,ProjectService,CommentService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,17 +5,19 @@
       <div class="column is-6">
         <div class="box">
           <h1 class="title is-3">Send a message</h1>
+          <p>To: </p>
+          <br>
           <div class="field">
             <div class="control">
-              <input class="input is-info" type="text" placeholder="Subject">
+              <input class="input is-info" type="text" [(ngModel)]="formInfo.subject"placeholder="Subject" name="subject">
             </div>
           </div>
           <div class="field">
             <div class="control">
-              <textarea class="textarea is-info" type="text" placeholder="Message Content"></textarea>
+              <textarea class="textarea is-info" type="text" [(ngModel)]="formInfo.content" name="content"placeholder="Message Content"></textarea>
             </div>
           </div>
-          <a class="button is-info">Send</a>
+          <a class="button is-info" (click)="send()">Send</a>
         </div>
       </div>
     </div>

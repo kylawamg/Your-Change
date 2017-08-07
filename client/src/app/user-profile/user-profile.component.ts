@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UserProfileComponent implements OnInit {
     user:any;
     userSession:any;
-    
+    error:string;
   constructor(private route: ActivatedRoute,private session: SessionService,private router : Router, private loggedin: LoggedinService) {
 }
   ngOnInit() {
@@ -23,6 +23,12 @@ export class UserProfileComponent implements OnInit {
 
         this.user = user});
     })
+    this.session.isLoggedIn().subscribe(user => this.successCbUser(user));
+    this.loggedin.getEmitter().subscribe(user => this.successCbUser(user));
   }
+  successCbUser(val) {
+    this.userSession = val;
+    this.error = null;
 
+  }
 }

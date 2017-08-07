@@ -1,101 +1,111 @@
+<div class="wrapper-signup">
+  <div class="columns  is-centered">
+    <div class="column is-5">
+      <div class="box">
+        <h1 class="title is-3">Signup</h1>
 
-<div class="columns  is-centered">
-  <div class="column is-5">
-    <div class="box">
-    <h1>Signup</h1>
-    <br>
-    <form>
-      <div class="field is-horizontal">
-        <div class="field-body">
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" type="text" [(ngModel)]="formInfo.username" name="username" placeholder="Username">
-              <span class="icon is-small is-left">
+        <form>
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="text" [(ngModel)]="formInfo.username" name="username" placeholder="Username">
+                  <span class="icon is-small is-left">
               <i class="fa fa-user"></i>
               </span>
-            </p>
-          </div>
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" type="password" [(ngModel)]="formInfo.password" name="password" placeholder="Password">
-              <span class="icon is-small is-left">
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="password" [(ngModel)]="formInfo.password" name="password" placeholder="Password">
+                  <span class="icon is-small is-left">
                 <i class="fa fa-lock"></i>
               </span>
-            </p>
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <!--Second Line Form -->
-      <div class="field is-horizontal">
-        <div class="field-body">
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" type="text" [(ngModel)]="formInfo.name" name="name" placeholder="Name">
-              <span class="icon is-small is-left">
+          <!--Second Line Form -->
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="text" [(ngModel)]="formInfo.name" name="name" placeholder="Name">
+                  <span class="icon is-small is-left">
               <i class="fa fa-user"></i>
               </span>
-            </p>
-          </div>
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" type="email" [(ngModel)]="formInfo.email" name="email" placeholder="Email">
-              <span class="icon is-small is-left">
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="email" [(ngModel)]="formInfo.email" name="email" placeholder="Email">
+                  <span class="icon is-small is-left">
                 <i class="fa fa-envelope"></i>
               </span>
-            </p>
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <!--Third line -->
-      <div class="field">
-        <p class="control has-icons-left has-icons-right">
-          <input class="input" type="text" [(ngModel)]="formInfo.address" name="address" placeholder="Type your postal address">
-          <span class="icon is-small is-left">
+          <!--Third line -->
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" type="text" [(ngModel)]="formInfo.address" name="address" placeholder="Type your postal address">
+              <span class="icon is-small is-left">
           <i class="fa fa-globe"></i>
         </span>
-        </p>
-      </div>
-      <!-- Last Line -->
-      <div class="field is-horizontal">
-        <div class="field-body">
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" type="text" [(ngModel)]="formInfo.country" name="country" placeholder="Country">
-              <span class="icon is-small is-left">
+            </p>
+          </div>
+          <!-- Last Line -->
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="text" [(ngModel)]="formInfo.country" name="country" placeholder="Country">
+                  <span class="icon is-small is-left">
               <i class="fa fa-globe"></i>
               </span>
-            </p>
-          </div>
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" type="text" [(ngModel)]="formInfo.city" name="city" placeholder="City">
-              <span class="icon is-small is-left">
+                </p>
+              </div>
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="text" [(ngModel)]="formInfo.city" name="city" placeholder="City">
+                  <span class="icon is-small is-left">
                 <i class="fa fa-globe"></i>
               </span>
-            </p>
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="field">
-        <div class="control">
-          <div class="select is-primary">
-            <select [(ngModel)]="formInfo.type" name="type">
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <label class="label">Type:</label>
+                <div class="control">
+                  <div class="select is-primary">
+                    <select [(ngModel)]="formInfo.type" name="type">
         <option>User</option>
         <option>ONG</option>
       </select>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Photo:</label>
+                <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
-      <div class="field">
-        <p class="control">
-          <button class="button is-success" (click)="signup()">
+          <div class="field">
+            <p class="control">
+              <br>
+              <button class="button is-info" (click)="signup()">
         Signup
       </button>
-        </p>
+            </p>
+          </div>
+          <p class="error"> {{ error }} </p>
+        </form>
       </div>
-      <p class="error"> {{ error }} </p>
-    </form>
-  </div>
+    </div>
   </div>
 </div>

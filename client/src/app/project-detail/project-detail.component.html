@@ -1,55 +1,86 @@
-<div class="project-info"*ngIf="project">
-
-
+<div class="project-info" *ngIf="project">
 
   <div class="columns  is-centered">
     <div class="column is-6">
       <div class="box">
-        <div *ngIf="user._id == project.creator._id">
-              <a [routerLink]="['/projects/edit/', project._id]">Edit </a>
+        <div class="columns">
+            <div class="column is-desktop">
+              <img class="img-mobile"  [src]="project.imgUrl" />
+              <h1 class="title is-2 left">{{project.title}} <span  class='right'>created by: <a [routerLink]="['/user/profile/', project.creator._id]">{{project.creator.username}} </a></span></h1>
+              <h3 class="title is-4">Descripcion:</h3>
+              <p class="project-description">{{project.description}}</p>
+              <h3 class="title is-6 left">Vacancies: <span class="right">{{project.vacancies}}</span></h3>
+              <h3 class="title is-6 left">Registration deadline: <span class="right">{{project.deadLine}}</span></h3>
+              <h3 class="title is-6 left">Start date: <span class="right">{{project.startDate}}</span></h3>
+              <h3 class="title is-6 left">End date: <span class="right">{{project.endDate}}</span></h3>
+              </div>
+            <div class="column is-desktop">
+              <img class="img-desktop"[src]="project.imgUrl" />
+              <h3 class="title is-6 left">Category: <span class="right">{{project.type}}</span></h3>
+
+              <h3 class="title is-6">Tags: </h3>
+              <span *ngFor="let tag of project.tags"class="tag is-info">{{tag}}</span>
+            </div>
         </div>
-        <img [src]="project.imgUrl"/>
-        <h1 class="title is-2">{{project.title}}</h1>
-        <h3>{{project.type}}</h3>
-        <p>{{project.description}}</p>
-        <p> {{project.creator.username}}</p>
-        <div *ngIf="project.position">
+
+
+
+
+
+
+        <div  *ngIf="project.position">
+        <h3 class="title is-5">Location: </h3>
           <agm-map [latitude]="project.position.latitud" [longitude]="project.position.longitud">
             <agm-marker [latitude]="project.position.latitud" [longitude]="project.position.longitud"></agm-marker>
           </agm-map>
 
         </div>
-        <h2>Comments</h2>
-        <div *ngIf="comments?.length > 0">
-          <div >
-            <p  *ngFor="let comment of comments">
-              Contenido:  {{comment.content}}
-            <span>Autor: {{comment.creator.username}}</span>
-            <span>Name: {{comment.creator.name}}</span>
-            </p>
-          </div>
-
-
+        <div class="bottom-buttons">
+          <a *ngIf="user && user._id == project.creator._id"class="button is-info"[routerLink]="['/projects/edit/', project._id]">Edit </a>
+          <a *ngIf="user && user._id !== project.creator._id"class="button is-info"[routerLink]="['/projects/edit/', project._id]">Register </a>
         </div>
 
-        <form>
-          <div class="field">
-            <div class="control">
-              <textarea class="textarea is-primary" [(ngModel)]="formInfo.content" name="content" type="text" placeholder="Comment..."></textarea>
+      </div>
+
+      <h2 class="title is-3">Comments</h2>
+      <div *ngIf="comments?.length > 0">
+
+        <div class="comment" *ngFor="let comment of comments">
+          <div class="card comment">
+            <header class="card-header">
+              <p class="card-header-title">
+              <a class="comment-creator"[routerLink]="['/user/profile/', comment.creator._id]">  Posted by: <span>{{comment.creator.username}} </span></a>
+
+            <small class="time">    at: {{comment.created_at | date: 'dd/MM/yyyy'}}</small>
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                {{comment.content}}
+
+              </div>
             </div>
           </div>
-          <div class="field">
-            <p class="control">
-              <button class="button is-success" (click)="createComment()">
-                      Create comment
-                    </button>
-
-            </p>
-          </div>
-          <p class="error"> {{ error }} </p>
-        </form>
-
+        </div>
       </div>
+      <h2 class="title is-5 register-to-comment" *ngIf="!user">Signup to post a comment on this project</h2>
+
+      <form *ngIf="user" class="comment-form">
+        <div class="field">
+          <div class="control">
+            <textarea class="textarea is-primary" [(ngModel)]="formInfo.content" name="content" type="text" placeholder="Comment..."></textarea>
+          </div>
+        </div>
+        <div class="field">
+          <p class="control">
+            <button class="button is-success" (click)="createComment()">
+                    Create comment
+                  </button>
+
+          </p>
+        </div>
+        <p class="error"> {{ error }} </p>
+      </form>
     </div>
   </div>
 </div>

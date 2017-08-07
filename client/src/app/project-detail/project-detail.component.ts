@@ -68,7 +68,7 @@ export class ProjectDetailComponent implements OnInit {
     this.project = null;
   }
   successCb(comment) {
-
+    
     this.comments.push({content: comment.content, creator: this.user})
     this.formInfo.content = ''
     this.error = null;

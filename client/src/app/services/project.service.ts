@@ -62,4 +62,14 @@ export class ProjectService {
       .map((res) => res.json())
       .catch(this.handleError);
   }
+  acceptCandidate (info) {
+    return this.http.put(`${baseURL}/project/acceptCandidate`, info, this.options)
+      .map((res) => res.json())
+      .catch(this.handleError);
+  }
+  declineCandidate (info) {
+    return this.http.put(`${baseURL}/project/declineCandidate`, info, this.options)
+      .map((res) => res.json())
+      .catch(this.handleError);
+  }
 }

@@ -39,6 +39,7 @@ exports.getAllByUser = function(req,res,next){
 exports.singleProject = function(req,res,next){
   projectModel.findById(req.params.id).populate('creator')
   .populate('candidates')
+  .populate('volunteers')
   .exec()
   .then(projectDetail => {res.json(projectDetail);
   })
@@ -95,7 +96,6 @@ exports.editProject = function(req, res ,next) {
 };
 
 exports.addCandidate = function (req,res,next){
-  //To do --> add candidate to project candidates array, and add project to user projectsInterestedin arr
   const userId = req.body.userId;
   const projectId = req.body.projectId;
 
@@ -110,8 +110,40 @@ exports.addCandidate = function (req,res,next){
       return res.status(201).json(project);
     });
   });
+};
 
+exports.declineCandidate = function (req,res,next){
+  const userId = req.body.userId;
+  const projectId = req.body.projectId;
+  projectModel.findByIdAndUpdate(projectId, { $pull:{candidates: userId }})
+  .populate('candidates')
+  .exec()
+  .then(project =>{
 
+    userModel.findByIdAndUpdate(userId, {$pull:{pendingProjects: projectId}}).then(user =>{
+      console.log(project);
+      return res.status(201).json(project);
+    });
+  });
+};
+
+exports.acceptCandidate = function (req,res,next){
+  const userId = req.body.userId;
+  const projectId = req.body.projectId;
+
+  projectModel.findByIdAndUpdate(projectId, { $push:{volunteers: userId }, $pull:{candidates:userId}},{ 'new': true})
+  .populate('candidates')
+  .populate('volunteers')
+  .populate('creator')
+  .exec()
+  .then(project =>{
+
+    userModel.findByIdAndUpdate(userId, {$push:{acceptedProjects: projectId}, $pull:{pendingProjects:projectId}}).then(user =>{
+      console.log("accepted");
+      console.log(project);
+      return res.status(201).json(project);
+    });
+  });
 };
 
 exports.deleteProject = function (req, res) {

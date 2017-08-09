@@ -23,11 +23,6 @@
             </div>
         </div>
 
-
-
-
-
-
         <div  *ngIf="project.position">
         <h3 class="title is-5">Location: </h3>
           <agm-map [latitude]="project.position.latitud" [longitude]="project.position.longitud">
@@ -46,14 +41,17 @@
             <p class="username">
               {{candidate.username}}
             <span class="buttons-right">
-              <a class="button is-info"href="">Send message</a>
-              <a class="button is-info"href="">Accept</a>
-              <a class="button is-info"href="">Decline</a>
+              <a class="button is-info" [routerLink]="['/messages/new/', candidate._id]">Send message</a>
+              <a class="button is-info" (click)="acceptCandidate(candidate._id)">Accept</a>
+              <a class="button is-info" (click)="declineCandidate(candidate._id)">Decline</a>
             </span>
 
             </p>
           </div>
         <h3 class="title is-5">Accepted users: </h3>
+          <div class="user-info" *ngFor="let volunteer of project.volunteers">
+              <p>{{volunteer.name}}</p>
+          </div>
         </div>
       </div>
 

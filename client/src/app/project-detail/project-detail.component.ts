@@ -17,6 +17,7 @@ export class ProjectDetailComponent implements OnInit {
   project: any;
   comments: Array<object>;
   candidates: Array<object>;
+  volunteers: Array<object>;
   error: string;
   user: any;
   formInfo = {
@@ -34,6 +35,7 @@ export class ProjectDetailComponent implements OnInit {
       .mergeMap(p => projectSvc.getProjectDetail(p.id))
       .subscribe(project => {
         this.project = project;
+        console.log(this.project);
       });
 
 
@@ -59,37 +61,57 @@ export class ProjectDetailComponent implements OnInit {
     this.formInfo._creator = this.user._id;
     this.commentSvc.createNewComent(this.formInfo)
       .subscribe(
-      (comment) => this.successCb(comment),
-      (err) => this.errorCb(err)
-      );
+      (comment) => this.successCb(comment));
   }
   addCandidate () {
     this.addCandidateInfo.userId =this.user._id;
+
     this.addCandidateInfo.projectId = this.project._id;
     this.projectSvc.addCandidate(this.addCandidateInfo).subscribe(
-      (project) => this.successCbCandidate(project),
-      (err) => this.errorCb(err)
-    );}
+      (project) => this.successCbProject(project));}
+
+  declineCandidate(userId){
+  var  info = {
+      userId: userId,
+      projectId: this.project._id
+    }
+    this.projectSvc.declineCandidate(info).subscribe((project) => this.successCbProject(project))
+  }
+
+  acceptCandidate(userId){
+    var  info = {
+        userId: userId,
+        projectId: this.project._id
+      }
+      this.projectSvc.acceptCandidate(info).subscribe((project) => this.successCbAccepted(project))
+    }
+
   successCbUser(val) {
     this.user = val;
     this.error = null;
 
   }
+
   errorCb(err) {
     this.error = err;
     console.log(this.error)
     this.project = null;
   }
-  successCbCandidate(project){
-    console.log(project);
-
-    this.project = project;
-    console.log(this.project)
+  successCbProject(project){
+  this.project = project;
   }
   successCb(comment) {
-
-    this.comments.push({content: comment.content, creator: this.user})
+      console.log(comment);
+    this.comments.push({content: comment.content, creator: this.user, created_at:comment.created_at})
     this.formInfo.content = ''
     this.error = null;
+  }
+  successCbAccepted (project) {
+    console.log("project");
+    console.log(project);
+  this.project = project;
+  console.log("this.project");
+  console.log(this.project);
+
   }
 }

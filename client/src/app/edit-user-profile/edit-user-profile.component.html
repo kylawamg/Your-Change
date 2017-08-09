@@ -5,32 +5,11 @@
     <h1 class="title is-3">Edit your personal information</h1>
     <br>
     <form>
-  <!--    <div class="field is-horizontal">
-        <div class="field-body">
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" type="text" [(ngModel)]="formInfo.username" name="username" placeholder="Username">
-              <span class="icon is-small is-left">
-              <i class="fa fa-user"></i>
-              </span>
-            </p>
-          </div>
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" type="password" [(ngModel)]="formInfo.password" name="password" placeholder="Password">
-              <span class="icon is-small is-left">
-                <i class="fa fa-lock"></i>
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>-->
-      <!--Second Line Form -->
       <div class="field is-horizontal">
         <div class="field-body">
           <div class="field">
             <p class="control has-icons-left">
-              <input class="input" type="text" [(ngModel)]="formInfo.name" name="name" placeholder="Name">
+              <input class="input" type="text" value="{{user.name}}"[(ngModel)]="formInfo.name" name="name" placeholder="Name">
               <span class="icon is-small is-left">
               <i class="fa fa-user"></i>
               </span>
@@ -38,29 +17,38 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <input class="input" type="email" [(ngModel)]="formInfo.email" name="email" placeholder="Email">
+              <input class="input" type="text" value="{{user.lastName}}"[(ngModel)]="formInfo.lastName" name="lastName" placeholder="Lastname">
               <span class="icon is-small is-left">
-                <i class="fa fa-envelope"></i>
+                <i class="fa fa-user"></i>
               </span>
             </p>
           </div>
         </div>
       </div>
       <!--Third line -->
+      <div class="field is-horizontal">
+        <div class="field-body">
       <div class="field">
         <p class="control has-icons-left has-icons-right">
-          <input class="input" type="text" [(ngModel)]="formInfo.address" name="address" placeholder="Type your postal address">
-          <span class="icon is-small is-left">
-          <i class="fa fa-globe"></i>
-        </span>
+          <input class="input" type="number" value="{{user.age}}"[(ngModel)]="formInfo.age" name="age" placeholder="Age">
         </p>
       </div>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="email" value="{{user.email}}"[(ngModel)]="formInfo.email" name="email" placeholder="Email">
+          <span class="icon is-small is-left">
+            <i class="fa fa-envelope"></i>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
       <!-- Last Line -->
       <div class="field is-horizontal">
         <div class="field-body">
           <div class="field">
             <p class="control has-icons-left">
-              <input class="input" type="text" [(ngModel)]="formInfo.country" name="country" placeholder="Country">
+              <input class="input" type="text" value="{{user.country}}"[(ngModel)]="formInfo.country" name="country" placeholder="Country">
               <span class="icon is-small is-left">
               <i class="fa fa-globe"></i>
               </span>
@@ -68,7 +56,7 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <input class="input" type="text" [(ngModel)]="formInfo.city" name="city" placeholder="City">
+              <input class="input" type="text" value="{{user.city}}"[(ngModel)]="formInfo.city" name="city" placeholder="City">
               <span class="icon is-small is-left">
                 <i class="fa fa-globe"></i>
               </span>
@@ -76,6 +64,12 @@
           </div>
         </div>
       </div>
+      <div class="field">
+        <div class="control">
+          <textarea class="textarea" value="{{user.description}}"[(ngModel)]="formInfo.description" name="description" type="text" placeholder="Description"></textarea>
+        </div>
+      </div>
+      <label class="label">Change your photo</label>
         <input class="uploadPhoto" type="file" name="file" ng2FileSelect [uploader]="uploader" />
         <br>
       <div class="field">

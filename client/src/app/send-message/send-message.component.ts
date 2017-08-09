@@ -21,11 +21,12 @@ export class SendMessageComponent implements OnInit {
   }
   error:string;
   constructor(private route: ActivatedRoute,
-   private session:SessionService, private loggedin: LoggedinService,
+  private session:SessionService, private loggedin: LoggedinService,
   private msgSvc: MessageService) { }
 
   ngOnInit() {
-    this.loggedin.getEmitter().subscribe((user) => { this.user = user });
+  //  this.loggedin.getEmitter().subscribe((user) => { this.user = user });
+    this.user = this.loggedin.getUser();
     this.route.params
        .subscribe((params) => {
          this.session.getUserProfile(params.id).subscribe( userTo => {

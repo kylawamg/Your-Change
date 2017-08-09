@@ -37,9 +37,24 @@
         </div>
         <div class="bottom-buttons">
           <a *ngIf="user && user._id == project.creator._id"class="button is-info"[routerLink]="['/projects/edit/', project._id]">Edit </a>
-          <a *ngIf="user && user._id !== project.creator._id"class="button is-info"[routerLink]="['/projects/edit/', project._id]">Register </a>
+          <a *ngIf="user && user._id !== project.creator._id"class="button is-info"(click)="addCandidate()">Register </a>
         </div>
+        <br>
+        <div *ngIf="user && user._id == project.creator._id">
+          <h3 class="title is-5">Interested users: </h3>
+          <div class="user-info" *ngFor="let candidate of project.candidates">
+            <p class="username">
+              {{candidate.username}}
+            <span class="buttons-right">
+              <a class="button is-info"href="">Send message</a>
+              <a class="button is-info"href="">Accept</a>
+              <a class="button is-info"href="">Decline</a>
+            </span>
 
+            </p>
+          </div>
+        <h3 class="title is-5">Accepted users: </h3>
+        </div>
       </div>
 
       <h2 class="title is-3">Comments</h2>
@@ -73,7 +88,7 @@
         </div>
         <div class="field">
           <p class="control">
-            <button class="button is-success" (click)="createComment()">
+            <button class="button is-info" (click)="createComment()">
                     Create comment
                   </button>
 

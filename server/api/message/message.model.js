@@ -7,7 +7,7 @@ const messageSchema = new Schema({
   content: {type:String, required:true},
   to: {type:Schema.Types.ObjectId, ref:'User'},
   from: {type:Schema.Types.ObjectId, ref:'User'},
-
+  read: {type: Boolean, default: false}
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });

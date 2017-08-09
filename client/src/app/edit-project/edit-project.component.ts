@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditProjectComponent implements OnInit {
   error:string;
+  
   project:any;
   formInfo = {
     title: '',
@@ -28,6 +29,11 @@ export class EditProjectComponent implements OnInit {
   constructor(private projectSvc: ProjectService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.route.params
+      .mergeMap(p => this.projectSvc.getProjectDetail(p.id))
+      .subscribe(project => {
+        this.project = project;
+      });
   }
   edit() {
     this.route.params

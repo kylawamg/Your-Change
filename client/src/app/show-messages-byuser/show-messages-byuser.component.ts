@@ -12,16 +12,18 @@ import { Observable } from 'rxjs';
 })
 export class ShowMessagesByuserComponent implements OnInit {
   user:any;
-  messages:Observable<Array<object>>;
-  constructor(private loggedin: LoggedinService, private msgSvc: MessageService) { }
+  messages:Array<object>;
+  constructor(private loggedin: LoggedinService, private msgSvc: MessageService) {
+
+}
 
   ngOnInit() {
-      console.log("entra en showmsgs");
-      this.loggedin.getEmitter().subscribe((user) => { this.user = user
-        this.msgSvc.getUserMessages(user._id).subscribe( messages => {
-          console.log(messages);
-          this.messages = messages
-          console.log(this.messages);});
-      })}
+  this.user =  this.loggedin.getUser();
+  this.msgSvc.getUserMessages(this.user._id).subscribe( messages => {
+    console.log(messages);
+    this.messages = messages
+    console.log(this.messages);});
+
+}
 
 }

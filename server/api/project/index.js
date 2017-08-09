@@ -10,7 +10,7 @@ router.get('/detail/:id', controller.singleProject);
 router.put('/edit/:id', controller.editProject);
 router.delete('/delete/:id', controller.deleteProject);
 router.get('/:type', controller.getAllByType);
-
+router.put('/addCandidate', controller.addCandidate);
 
 
 

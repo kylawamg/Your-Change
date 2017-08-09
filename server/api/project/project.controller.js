@@ -38,6 +38,7 @@ exports.getAllByUser = function(req,res,next){
 // Get project detail by id
 exports.singleProject = function(req,res,next){
   projectModel.findById(req.params.id).populate('creator')
+  .populate('candidates')
   .exec()
   .then(projectDetail => {res.json(projectDetail);
   })
@@ -93,6 +94,25 @@ exports.editProject = function(req, res ,next) {
   });
 };
 
+exports.addCandidate = function (req,res,next){
+  //To do --> add candidate to project candidates array, and add project to user projectsInterestedin arr
+  const userId = req.body.userId;
+  const projectId = req.body.projectId;
+
+
+  projectModel.findByIdAndUpdate(projectId, { $push:{candidates: userId }})
+  .populate('candidates')
+  .exec()
+  .then(project =>{
+
+    userModel.findByIdAndUpdate(userId, {$push:{pendingProjects: projectId}}).then(user =>{
+      console.log(project);
+      return res.status(201).json(project);
+    });
+  });
+
+
+};
 
 exports.deleteProject = function (req, res) {
     projectModel.findByIdAndRemove(req.params.id)

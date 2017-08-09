@@ -16,10 +16,12 @@ export class EditUserProfileComponent implements OnInit {
 
   formInfo = {
     name: '',
-    address: '',
+    lastName: '',
+    age: 0,
     city: '',
     country: '',
-    email: ''
+    email: '',
+    description: ''
 
   };
   error: string;
@@ -37,10 +39,12 @@ export class EditUserProfileComponent implements OnInit {
   edit() {
     this.uploader.onBuildItemForm = (item, form) => {
       form.append('name', this.formInfo.name);
-      form.append('address', this.formInfo.address);
+      form.append('lastName', this.formInfo.lastName);
+      form.append('age', this.formInfo.age);
       form.append('city', this.formInfo.city);
       form.append('country', this.formInfo.country);
       form.append('email', this.formInfo.email);
+      form.append('description', this.formInfo.description);
     };
 
     this.uploader.uploadAll();

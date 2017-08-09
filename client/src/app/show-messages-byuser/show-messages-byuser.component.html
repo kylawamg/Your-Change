@@ -2,9 +2,12 @@
   show-messages-byuser works!
 </p>
 
-
-<div *ngFor="let msg of messages">
-  <p>{{msg.subject}}</p>
-    <p>{{msg.content}}</p>
-    <br>
+<div *ngIf="messages">
+  <div *ngFor="let msg of messages">
+    <p>{{msg.subject}}</p>
+      <p>{{msg.content}}</p>
+      <p>{{msg.to}}</p>
+      <p>{{msg.from}}</p>
+      <br>
+  </div>
 </div>

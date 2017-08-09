@@ -3,3 +3,8 @@
 }
 .left{text-align:left;font-weight:bold;}
 .right{font-size:16px;}
+
+.img-mobile{
+  max-width: 250px;
+  max-height: 250px;
+}

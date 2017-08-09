@@ -16,6 +16,7 @@ export class ProjectDetailComponent implements OnInit {
 
   project: any;
   comments: Array<object>;
+  candidates: Array<object>;
   error: string;
   user: any;
   formInfo = {
@@ -23,6 +24,11 @@ export class ProjectDetailComponent implements OnInit {
     _project: '',
     _creator: ''
   }
+  addCandidateInfo = {
+    userId : '',
+    projectId : ''
+  };
+
   constructor(private router: Router, private projectSvc: ProjectService, private route: ActivatedRoute, private commentSvc: CommentService, private session: SessionService, private loggedin: LoggedinService) {
     route.params
       .mergeMap(p => projectSvc.getProjectDetail(p.id))
@@ -57,6 +63,13 @@ export class ProjectDetailComponent implements OnInit {
       (err) => this.errorCb(err)
       );
   }
+  addCandidate () {
+    this.addCandidateInfo.userId =this.user._id;
+    this.addCandidateInfo.projectId = this.project._id;
+    this.projectSvc.addCandidate(this.addCandidateInfo).subscribe(
+      (project) => this.successCbCandidate(project),
+      (err) => this.errorCb(err)
+    );}
   successCbUser(val) {
     this.user = val;
     this.error = null;
@@ -67,8 +80,14 @@ export class ProjectDetailComponent implements OnInit {
     console.log(this.error)
     this.project = null;
   }
+  successCbCandidate(project){
+    console.log(project);
+
+    this.project = project;
+    console.log(this.project)
+  }
   successCb(comment) {
-    
+
     this.comments.push({content: comment.content, creator: this.user})
     this.formInfo.content = ''
     this.error = null;

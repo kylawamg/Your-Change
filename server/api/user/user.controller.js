@@ -15,17 +15,21 @@ exports.editUser = function(req, res, next) {
 
   var _id = req.params.id;
   var name = req.body.name;
-  var address = req.body.address;
+  var lastName = req.body.lastName;
   var city = req.body.city;
   var country = req.body.country;
   var email = req.body.email;
+  var age = req.body.age;
+  var description = req.body.description;
 
   const update = {
       name,
-      address,
+      lastName,
       city,
       country,
-      email
+      email,
+      age,
+      description
   };
 console.log(req.file);
   if (req.file) update.picPath = `/uploads/${req.file.filename}`;

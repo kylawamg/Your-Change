@@ -23,7 +23,8 @@ const userSchema = new Schema({
   twitter: String,
   instagram:String,
   linkedin: String,
-  projects: [{ type : mongoose.Schema.Types.ObjectId, ref: 'Project' }],
+  pendingProjects: [{ type : mongoose.Schema.Types.ObjectId, ref: 'Project' }],
+  acceptedProjects: [{ type : mongoose.Schema.Types.ObjectId, ref: 'Project' }],
   position: {
     longitud: Number,
     latitud: Number

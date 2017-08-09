@@ -5,12 +5,17 @@ import { Router } from '@angular/router';
 import { ProjectService } from '../services/project.service';
 import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from  '@agm/core';
+import { FileUploader } from "ng2-file-upload";
 @Component({
   selector: 'app-project-create',
   templateUrl: './project-create.component.html',
   styleUrls: ['./project-create.component.css']
 })
 export class ProjectCreateComponent implements OnInit {
+  uploader: FileUploader = new FileUploader({
+  url: 'http://localhost:3000/project/new'
+});
+  feedback: any;
   project:any;
   user:any;
   formInfo = {
@@ -49,6 +54,14 @@ export class ProjectCreateComponent implements OnInit {
     this.session.isLoggedIn().subscribe( user => this.successCbUser(user));
     this.loggedin.getEmitter().subscribe(user => this.successCbUser(user));
     //set google maps defaults
+    this.uploader.onSuccessItem = (item, response) => {
+      this.feedback = JSON.parse(response).message;
+      this.router.navigate(['/']);
+    };
+
+    this.uploader.onErrorItem = (item, response, status, headers) => {
+      this.feedback = JSON.parse(response).message;
+    };
    this.zoom = 14;
    this.latitude = 39.8282;
    this.longitude = -98.5795;
@@ -103,12 +116,28 @@ export class ProjectCreateComponent implements OnInit {
     this.formInfo.position.longitud = this.longitude;
     this.formInfo.position.latitud = this.latitude;
     this.formInfo.creator = this.user._id
-    console.log(this.formInfo.position);
-    this.projectSvc.createNewProject(this.formInfo)
+    console.log(this.formInfo);
+
+    this.uploader.onBuildItemForm = (item, form) => {
+    form.append('title', this.formInfo.title);
+    form.append('type', this.formInfo.type);
+    form.append('description', this.formInfo.description);
+    form.append('profile', this.formInfo.profile);
+    form.append('tags', this.formInfo.tags);
+    form.append('deadLine', this.formInfo.deadLine);
+    form.append('startDate', this.formInfo.startDate);
+    form.append('endDate', this.formInfo.endDate);
+    form.append('position', JSON.stringify(this.formInfo.position));
+    form.append('vacancies', this.formInfo.vacancies);
+    form.append('creator', this.formInfo.creator);
+       };
+
+      this.uploader.uploadAll();
+  /*  this.projectSvc.createNewProject(this.formInfo)
       .subscribe(
         (project) => this.successCb(project),
         (err) => this.errorCb(err)
-    );
+    );*/
   }
 
   successCbUser(val) {

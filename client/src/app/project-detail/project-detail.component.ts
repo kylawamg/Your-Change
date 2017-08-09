@@ -16,8 +16,7 @@ export class ProjectDetailComponent implements OnInit {
 
   project: any;
   comments: Array<object>;
-  candidates: Array<object>;
-  volunteers: Array<object>;
+  registerMsg:boolean;
   error: string;
   user: any;
   formInfo = {
@@ -64,11 +63,16 @@ export class ProjectDetailComponent implements OnInit {
       (comment) => this.successCb(comment));
   }
   addCandidate () {
+
     this.addCandidateInfo.userId =this.user._id;
 
     this.addCandidateInfo.projectId = this.project._id;
     this.projectSvc.addCandidate(this.addCandidateInfo).subscribe(
-      (project) => this.successCbProject(project));}
+      (project) => {
+        this.project = project;
+        this.registerMsg = !this.registerMsg;
+
+      })}
 
   declineCandidate(userId){
   var  info = {
@@ -83,8 +87,15 @@ export class ProjectDetailComponent implements OnInit {
         userId: userId,
         projectId: this.project._id
       }
-      this.projectSvc.acceptCandidate(info).subscribe((project) => this.successCbAccepted(project))
+      this.projectSvc.acceptCandidate(info).subscribe((project) => this.successCbProject(project))
     }
+    deleteVolunteer(userId){
+      var  info = {
+          userId: userId,
+          projectId: this.project._id
+        }
+        this.projectSvc.deleteVolunteer(info).subscribe((project) => this.successCbProject(project))
+      }
 
   successCbUser(val) {
     this.user = val;
@@ -106,12 +117,5 @@ export class ProjectDetailComponent implements OnInit {
     this.formInfo.content = ''
     this.error = null;
   }
-  successCbAccepted (project) {
-    console.log("project");
-    console.log(project);
-  this.project = project;
-  console.log("this.project");
-  console.log(this.project);
 
-  }
 }

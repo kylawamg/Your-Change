@@ -49,11 +49,11 @@ exports.singleProject = function(req,res,next){
 
 exports.createProject = function(req, res, next) {
     console.log(req.body.position);
+
   const newProject = new projectModel({
     creator: req.body.creator,
     title: req.body.title,
     type: req.body.type,
-    address: req.body.address,
     description: req.body.description,
     deadLine: req.body.deadLine,
     profile: req.body.profile,
@@ -61,15 +61,18 @@ exports.createProject = function(req, res, next) {
     startDate: req.body.startDate,
     endDate: req.body.endDate,
     vacancies: req.body.vacancies,
-    position:{ longitud: req.body.position.longitud,
-    latitud: req.body.position.latitud}
+    position: JSON.parse(req.body.position)
+  //  position:{ longitud: req.body.position.longitud,
+  //  latitud: req.body.position.latitud}
 
   });
+
+  if (req.file) newProject.imgUrl = `/uploads/${req.file.filename}`;
 
 	newProject.save()
       .then( project => {res.json({ message: 'New Project created!', id: newProject._id });})
       .catch( err => {res.status(500).json({error:err, message:"Cannot create the project"});
-    console.log(err);});
+    console.log("error "+err);});
 };
 
 exports.editProject = function(req, res ,next) {
@@ -102,6 +105,8 @@ exports.addCandidate = function (req,res,next){
 
   projectModel.findByIdAndUpdate(projectId, { $push:{candidates: userId }})
   .populate('candidates')
+  .populate('creator')
+  .populate('volunteers')
   .exec()
   .then(project =>{
 
@@ -115,8 +120,10 @@ exports.addCandidate = function (req,res,next){
 exports.declineCandidate = function (req,res,next){
   const userId = req.body.userId;
   const projectId = req.body.projectId;
-  projectModel.findByIdAndUpdate(projectId, { $pull:{candidates: userId }})
+  projectModel.findByIdAndUpdate(projectId, { $pull:{candidates: userId }},{ 'new': true})
   .populate('candidates')
+  .populate('creator')
+  .populate('volunteers')
   .exec()
   .then(project =>{
 
@@ -145,6 +152,24 @@ exports.acceptCandidate = function (req,res,next){
     });
   });
 };
+
+exports.deleteVolunteer = function (req,res,next){
+  const userId = req.body.userId;
+  const projectId = req.body.projectId;
+  projectModel.findByIdAndUpdate(projectId, { $push:{candidates: userId},$pull:{volunteers: userId }},{ 'new': true})
+  .populate('candidates')
+  .populate('creator')
+  .populate('volunteers')
+  .exec()
+  .then(project =>{
+
+    userModel.findByIdAndUpdate(userId, {$push:{pendingProjects: projectId},$pull:{acceptedProjects: projectId}}).then(user =>{
+      console.log(project);
+      return res.status(201).json(project);
+    });
+  });
+};
+
 
 exports.deleteProject = function (req, res) {
     projectModel.findByIdAndRemove(req.params.id)

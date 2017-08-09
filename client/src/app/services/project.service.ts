@@ -72,4 +72,9 @@ export class ProjectService {
       .map((res) => res.json())
       .catch(this.handleError);
   }
+  deleteVolunteer (info){
+    return this.http.put(`${baseURL}/project/deleteVolunteer`, info, this.options)
+      .map((res) => res.json())
+      .catch(this.handleError);
+  }
 }

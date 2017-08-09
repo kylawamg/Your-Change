@@ -5,7 +5,7 @@
       <div class="box">
         <div class="columns">
             <div class="column is-desktop">
-              <img class="img-mobile"  [src]="project.imgUrl" />
+              <img class="img-mobile" [src]="'http://localhost:3000'+project.imgUrl"/>
               <h1 class="title is-2 left">{{project.title}} <span  class='right'>created by: <a [routerLink]="['/user/profile/', project.creator._id]">{{project.creator.username}} </a></span></h1>
               <h3 class="title is-4">Descripcion:</h3>
               <p class="project-description">{{project.description}}</p>
@@ -15,7 +15,7 @@
               <h3 class="title is-6 left">End date: <span class="right">{{project.endDate}}</span></h3>
               </div>
             <div class="column is-desktop">
-              <img class="img-desktop"[src]="project.imgUrl" />
+              <img class="img-desktop"[src]="'http://localhost:3000'+project.imgUrl" />
               <h3 class="title is-6 left">Category: <span class="right">{{project.type}}</span></h3>
 
               <h3 class="title is-6">Tags: </h3>
@@ -32,7 +32,9 @@
         </div>
         <div class="bottom-buttons">
           <a *ngIf="user && user._id == project.creator._id"class="button is-info"[routerLink]="['/projects/edit/', project._id]">Edit </a>
-          <a *ngIf="user && user._id !== project.creator._id"class="button is-info"(click)="addCandidate()">Register </a>
+
+          <a *ngIf="user && user._id !== project.creator._id && project.candidates.indexOf(user._id)"class="button is-info"(click)="addCandidate()">Register </a>
+          <p *ngIf="user && !project.candidates.indexOf(user._id)">You have successfully registered to the project</p>
         </div>
         <br>
         <div *ngIf="user && user._id == project.creator._id">
@@ -48,9 +50,15 @@
 
             </p>
           </div>
+
         <h3 class="title is-5">Accepted users: </h3>
           <div class="user-info" *ngFor="let volunteer of project.volunteers">
-              <p>{{volunteer.name}}</p>
+              <p class="username">{{volunteer.username}}
+                <span class="buttons-right">
+                  <a class="button is-info" [routerLink]="['/messages/new/', volunteer._id]">Send message</a>
+                  <a class="button is-info" (click)="deleteVolunteer(volunteer._id)">Delete</a>
+                </span>
+              </p>
           </div>
         </div>
       </div>

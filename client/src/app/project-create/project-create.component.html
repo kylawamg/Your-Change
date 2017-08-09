@@ -10,12 +10,7 @@
               <input class="input" type="text" [(ngModel)]="formInfo.title" name="title" placeholder="Title">
             </p>
           </div>
-          <div class="field">
-            <label class="label">Location</label>
-            <p class="control">
-              <input class="input" type="text" [(ngModel)]="formInfo.address" name="address" placeholder="Location">
-            </p>
-          </div>
+
           <div class="field">
             <label class="label">Profile</label>
             <p class="control">
@@ -47,23 +42,33 @@
             </div>
           </div>
           <div class="field">
+            <label class="label">Photo:</label>
+            <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+          </div>   
+          <div class="field">
             <label class="label">Tags</label>
             <div class="control">
               <div class="select is-multiple">
                 <select multiple size="2" [(ngModel)]="formInfo.tags" name="tags">
-        <option>Animales</option>
-        <option>Comunidad</option>
-        <option>Comunidad</option>
-        <option>Comunidad</option>
-        <option>Comunidad</option>
-        <option>Comunidad</option>
-        <option>Comunidad</option>
-        <option>Comunidad</option>
+        <option>animals</option>
+        <option>art and culture</option>
+        <option>community</option>
+        <option>education</option>
+        <option>environment</option>
+        <option>sports</option>
+        <option>tics</option>
+        <option>homeless</option>
+        <option>kids</option>
+        <option>youth</option>
+        <option>handicapped</option>
+        <option>penitentiary</option>
+        <option>mental healt</option>
       </select>
               </div>
             </div>
           </div>
           <div class="field">
+                <label class="label">Description</label>
             <div class="control">
               <textarea class="textarea" [(ngModel)]="formInfo.description" name="description" type="text" placeholder="Description"></textarea>
             </div>
@@ -73,7 +78,7 @@
 
 
           <div class="field">
-
+                <label class="label">Location</label>
             <p class="control">
               <input class="input" placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search [formControl]="searchControl" size="100">
 

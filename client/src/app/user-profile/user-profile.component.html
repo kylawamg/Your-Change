@@ -15,7 +15,7 @@
                 <p>{{user.description}}</p>
         </div>
         <a *ngIf="userSession && userSession._id == user._id" class="button is-info" [routerLink]="['/user/edit/', user._id]">Edit the profile </a>
-        <a *ngIf="userSession" class="button is-info" [routerLink]="['/messages/new/', user._id]">Direct Message </a>
+        <a *ngIf="userSession && userSession._id !== user._id" class="button is-info" [routerLink]="['/messages/new/', user._id]">Direct Message </a>
 
       </div>
     </div>

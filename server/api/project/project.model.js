@@ -14,7 +14,7 @@ const projectSchema = new Schema({
   profile: String,
   tags: {
     type: [String],
-    enum: ["animales", "arte y cultura", "comunidad", "mayores", "educacion", "medio ambiente", "internacional", "deportes", "tics", "sin hogar", "niños", "juventud", "discapacitados", "penintenciarios", "salud mental", "educacion"]
+    enum: ["animals", "art and culture", "community", "education", "environment", "sports", "tics", "homeless", "kids", "youth", "handicapped", "penitentiary", "mental healt"]
   },
   startDate: String,
   endDate: String,

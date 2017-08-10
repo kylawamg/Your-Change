@@ -4,6 +4,7 @@ import { LoggedinService } from '../services/loggedin.service';
 import {environment} from '../../environments/environment';
 import { Router } from '@angular/router';
 import { FileUploader } from "ng2-file-upload";
+
 @Component({
   selector: 'app-signup-form',
   templateUrl: './signup-form.component.html',
@@ -11,7 +12,7 @@ import { FileUploader } from "ng2-file-upload";
 })
 export class SignupFormComponent implements OnInit {
   uploader: FileUploader = new FileUploader({
-  url: 'http://localhost:3000/user/signup'
+  url: '${environment.apiUrl}/user/signup'
 });
 
   user: any;

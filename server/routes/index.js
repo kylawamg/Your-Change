@@ -7,7 +7,5 @@ module.exports = function(app) {
   app.use('/messages', require('../api/message'));
   app.use('/relations', require('../api/project-user-rel'));
   // catch 404 and forward to Angular
-  app.all('/*', function(req, res) {
-    res.sendfile(__dirname + '/public/index.html');
-  });
+
 };

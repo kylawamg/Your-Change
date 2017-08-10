@@ -36,8 +36,8 @@
                 </div>
                 <nav id="creator" class="level">
                   <div class="level-left">
-                    <p>Type:  <span> {{project.type}}</span> -</p>
-                    <p>Tags:  <span *ngFor="let tag of project.tags"class="tag is-info"> {{tag}}</span></p>
+                    <p class="author-name">Type:  <span> {{project.type}}</span> -</p>
+                    <p class="author-name">Tags:  <span *ngFor="let tag of project.tags"class="tag is-info"> {{tag}}</span></p>
                     <a [routerLink]="['/user/profile',project.creator._id]" class="level-item">
                       <p class="author-name">Organization: {{project.creator.name}}</p>
                     </a>

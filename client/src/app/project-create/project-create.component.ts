@@ -13,7 +13,7 @@ import { FileUploader } from "ng2-file-upload";
 })
 export class ProjectCreateComponent implements OnInit {
   uploader: FileUploader = new FileUploader({
-  url: 'http://localhost:3000/project/new'
+  url: '${environment.apiUrl}/project/new'
 });
   feedback: any;
   project:any;

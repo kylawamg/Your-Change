@@ -5,7 +5,7 @@
       <div class="box">
         <div class="columns">
           <div class="column is-desktop">
-            <img class="img-mobile" [src]="'http://localhost:3000'+project.imgUrl" />
+            <img class="img-mobile" [src]="project.imageURL" />
             <h1 class="title is-2 left">{{project.title}} <span  class='right'>created by: <a [routerLink]="['/user/profile/', project.creator._id]">{{project.creator.username}} </a></span></h1>
             <h3 class="title is-4">Descripcion:</h3>
             <p class="project-description">{{project.description}}</p>
@@ -15,7 +15,7 @@
             <h3 class="title is-6 left">End date: <span class="right">{{project.endDate}}</span></h3>
           </div>
           <div class="column is-desktop">
-            <img class="img-desktop" [src]="'http://localhost:3000'+project.imgUrl" />
+            <img class="img-desktop" [src]="project.imageURL" />
             <h3 class="title is-6 left">Category: <span class="right">{{project.type}}</span></h3>
 
             <h3 class="title is-6">Tags: </h3>

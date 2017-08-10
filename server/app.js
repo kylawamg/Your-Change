@@ -62,7 +62,9 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.all('/*', function(req, res) {
+  res.sendfile(__dirname + '/public/index.html');
+});
 app.use((req, res, next)=>{
   res.locals.user = req.user;
   next();

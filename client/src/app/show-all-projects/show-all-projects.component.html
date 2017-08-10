@@ -16,7 +16,7 @@
             <article class="media">
               <figure class="left">
                     <a [routerLink]="['/projects/detail',project._id]">
-                  <img class="img-post" [src]="'http://localhost:3000'+project.imgUrl" alt="">
+                  <img class="img-post" [src]="+project.imageURL" alt="">
                 </a>
 
               </figure>

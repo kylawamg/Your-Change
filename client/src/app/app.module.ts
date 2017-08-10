@@ -26,7 +26,7 @@ import { ShowProjectsByUserComponent } from './show-projects-by-user/show-projec
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { ShowOngsComponent } from './show-ongs/show-ongs.component';
-import { FileSelectDirective } from "ng2-file-upload";
+import { FileUploadModule } from "ng2-file-upload";
 import { AgmCoreModule } from '@agm/core';
 import {} from '@types/googlemaps';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -51,7 +51,6 @@ import { ShowMessagesByuserComponent } from './show-messages-byuser/show-message
     EditUserProfileComponent,
     EditProjectComponent,
     ShowOngsComponent,
-    FileSelectDirective,
     SendMessageComponent,
     MessagesComponent,
     ShowMessagesByuserComponent
@@ -61,6 +60,7 @@ import { ShowMessagesByuserComponent } from './show-messages-byuser/show-message
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    FileUploadModule,
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAguIL3iSMULstjCCoXrKnz1xgwcsbB8so',

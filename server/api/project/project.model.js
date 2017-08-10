@@ -42,6 +42,13 @@ const projectSchema = new Schema({
     updatedAt: "updated_at"
   }
 });
+projectSchema.set('toJSON', { virtuals: true });
+projectSchema.virtual('imageURL').get(function() {
+  if(this.imgUrl.includes('http')){
+    return this.imgUrl;
+  }
+return `${process.env.HOST}${this.imgUrl}`;
+});
 
 const Project = mongoose.model("Project", projectSchema);
 module.exports = Project;

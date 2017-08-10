@@ -42,7 +42,7 @@ userSchema.virtual('imageURL').get(function() {
   if(this.picPath.includes('http')){
     return this.picPath;
   }
-  return `http://localhost:3000${this.picPath}`;
+return `${process.env.HOST}${this.pic_path}`;
 });
 
 const User = mongoose.model("User", userSchema);

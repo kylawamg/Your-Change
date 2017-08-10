@@ -62,15 +62,16 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.all('/*', function(req, res) {
-  res.sendfile(__dirname + '/public/index.html');
-});
+
 app.use((req, res, next)=>{
   res.locals.user = req.user;
   next();
 });
 require('./routes')(app);
 // catch 404 and forward to error handler
+app.all('/*', function(req, res) {
+  res.sendfile(__dirname + '/public/index.html');
+});
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;

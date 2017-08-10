@@ -31,11 +31,10 @@ exports.editUser = function(req, res, next) {
       age,
       description
   };
-console.log(req.file);
+
   if (req.file) update.picPath = `/uploads/${req.file.filename}`;
 //  if (req.file) update.picPath = `/uploads/${req.file.filename}`;
-console.log(update);
-console.log(_id);
+
   User.findByIdAndUpdate(_id, update, function(err, user) {
     if (err) {
       console.log(err);
@@ -48,6 +47,8 @@ console.log(_id);
 };
 
 exports.createUser = function(req, res, next) {
+    console.log(req.file);
+    console.log("hola");
   var username = req.body.username;
   var password = req.body.password;
   var name = req.body.name;
@@ -87,7 +88,7 @@ exports.createUser = function(req, res, next) {
       country,
       address
     });
-    console.log(req.file);
+
   //  if (req.file) newUser.picPath = `/uploads/${req.file.filename}`;
       if (req.file) newUser.picPath = `/uploads/${req.file.filename}`;
     newUser.save((err) => {

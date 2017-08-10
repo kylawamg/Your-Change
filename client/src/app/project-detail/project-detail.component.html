@@ -4,104 +4,111 @@
     <div class="column is-6">
       <div class="box">
         <div class="columns">
-            <div class="column is-desktop">
-              <img class="img-mobile" [src]="'http://localhost:3000'+project.imgUrl"/>
-              <h1 class="title is-2 left">{{project.title}} <span  class='right'>created by: <a [routerLink]="['/user/profile/', project.creator._id]">{{project.creator.username}} </a></span></h1>
-              <h3 class="title is-4">Descripcion:</h3>
-              <p class="project-description">{{project.description}}</p>
-              <h3 class="title is-6 left">Vacancies: <span class="right">{{project.vacancies}}</span></h3>
-              <h3 class="title is-6 left">Registration deadline: <span class="right">{{project.deadLine}}</span></h3>
-              <h3 class="title is-6 left">Start date: <span class="right">{{project.startDate}}</span></h3>
-              <h3 class="title is-6 left">End date: <span class="right">{{project.endDate}}</span></h3>
-              </div>
-            <div class="column is-desktop">
-              <img class="img-desktop"[src]="'http://localhost:3000'+project.imgUrl" />
-              <h3 class="title is-6 left">Category: <span class="right">{{project.type}}</span></h3>
+          <div class="column is-desktop">
+            <img class="img-mobile" [src]="'http://localhost:3000'+project.imgUrl" />
+            <h1 class="title is-2 left">{{project.title}} <span  class='right'>created by: <a [routerLink]="['/user/profile/', project.creator._id]">{{project.creator.username}} </a></span></h1>
+            <h3 class="title is-4">Descripcion:</h3>
+            <p class="project-description">{{project.description}}</p>
+            <h3 class="title is-6 left">Vacancies: <span class="right">{{project.vacancies}}</span></h3>
+            <h3 class="title is-6 left">Registration deadline: <span class="right">{{project.deadLine}}</span></h3>
+            <h3 class="title is-6 left">Start date: <span class="right">{{project.startDate}}</span></h3>
+            <h3 class="title is-6 left">End date: <span class="right">{{project.endDate}}</span></h3>
+          </div>
+          <div class="column is-desktop">
+            <img class="img-desktop" [src]="'http://localhost:3000'+project.imgUrl" />
+            <h3 class="title is-6 left">Category: <span class="right">{{project.type}}</span></h3>
 
-              <h3 class="title is-6">Tags: </h3>
-              <span *ngFor="let tag of project.tags"class="tag is-info">{{tag}}</span>
-            </div>
+            <h3 class="title is-6">Tags: </h3>
+            <span *ngFor="let tag of project.tags" class="tag is-info">{{tag}}</span>
+          </div>
         </div>
 
-        <div  *ngIf="project.position">
-        <h3 class="title is-5">Location: </h3>
+        <div *ngIf="project.position">
+          <h3 class="title is-5">Location: </h3>
           <agm-map [latitude]="project.position.latitud" [longitude]="project.position.longitud">
             <agm-marker [latitude]="project.position.latitud" [longitude]="project.position.longitud"></agm-marker>
           </agm-map>
 
         </div>
         <div class="bottom-buttons">
-          <a *ngIf="user && user._id == project.creator._id"class="button is-info"[routerLink]="['/projects/edit/', project._id]">Edit </a>
+          <a *ngIf="user && user._id == project.creator._id" class="button is-info" [routerLink]="['/projects/edit/', project._id]">Edit </a>
 
-          <a *ngIf="user && user._id !== project.creator._id && project.candidates.indexOf(user._id)"class="button is-info"(click)="addCandidate()">Register </a>
-          <p *ngIf="user && !project.candidates.indexOf(user._id)">You have successfully registered to the project</p>
+          <a *ngIf="user && user._id !== project.creator._id && !relation?.registered" class="button is-info" (click)="addCandidate()">Register </a>
+          <p *ngIf="user && user._id !== project.creator._id && relation?.registered">You have successfully registered to the project</p>
         </div>
         <br>
         <div *ngIf="user && user._id == project.creator._id">
           <h3 class="title is-5">Interested users: </h3>
-          <div class="user-info" *ngFor="let candidate of project.candidates">
-            <p class="username">
-              {{candidate.username}}
-            <span class="buttons-right">
-              <a class="button is-info" [routerLink]="['/messages/new/', candidate._id]">Send message</a>
-              <a class="button is-info" (click)="acceptCandidate(candidate._id)">Accept</a>
-              <a class="button is-info" (click)="declineCandidate(candidate._id)">Decline</a>
-            </span>
-
-            </p>
-          </div>
-
-        <h3 class="title is-5">Accepted users: </h3>
-          <div class="user-info" *ngFor="let volunteer of project.volunteers">
-              <p class="username">{{volunteer.username}}
+          <div class="user-info" *ngFor="let relation of relations">
+            <div *ngIf="relation.status == 'Candidate'">
+              <p class="username">
+                {{relation.userId.username}}
                 <span class="buttons-right">
-                  <a class="button is-info" [routerLink]="['/messages/new/', volunteer._id]">Send message</a>
-                  <a class="button is-info" (click)="deleteVolunteer(volunteer._id)">Delete</a>
-                </span>
+                <a class="button is-info" [routerLink]="['/messages/new/', relation.userId._id]">Send message</a>
+                <a class="button is-info" (click)="acceptCandidate(relation._id)">Accept</a>
+                <a class="button is-info" (click)="declineCandidate(relation._id)">Decline</a>
+              </span>
+
               </p>
+
+            </div>
+
+          </div>
+          <h3 class="title is-5">Accepted users: </h3>
+          <div class="user-info" *ngFor="let relation of relations">
+            <div *ngIf="relation.status == 'Accepted'">
+              <p class="username">{{relation.userId.username}}
+                <span class="buttons-right">
+                        <a class="button is-info" [routerLink]="['/messages/new/', relation.userId._id]">Send message</a>
+                        <a class="button is-info" (click)="deleteVolunteer(relation._id)">Delete</a>
+                      </span>
+              </p>
+            </div>
+
           </div>
         </div>
-      </div>
 
-      <h2 class="title is-3">Comments</h2>
-      <div *ngIf="comments?.length > 0">
+    </div>
 
-        <div class="comment" *ngFor="let comment of comments">
-          <div class="card comment">
-            <header class="card-header">
-              <p class="card-header-title">
-              <a class="comment-creator"[routerLink]="['/user/profile/', comment.creator._id]">  Posted by: <span>{{comment.creator.username}} </span></a>
+    <h2 class="title is-3">Comments</h2>
+    <div *ngIf="comments?.length > 0">
 
-            <small class="time">    at: {{comment.created_at | date: 'dd/MM/yyyy'}}</small>
-              </p>
-            </header>
-            <div class="card-content">
-              <div class="content">
-                {{comment.content}}
+      <div class="comment" *ngFor="let comment of comments">
+        <div class="card comment">
+          <header class="card-header">
+            <p class="card-header-title">
+              <a class="comment-creator" [routerLink]="['/user/profile/', comment.creator._id]">  Posted by: <span>{{comment.creator.username}} </span></a>
 
-              </div>
+              <small class="time">    at: {{comment.created_at | date: 'dd/MM/yyyy'}}</small>
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              {{comment.content}}
+
             </div>
           </div>
         </div>
       </div>
-      <h2 class="title is-5 register-to-comment" *ngIf="!user">Signup to post a comment on this project</h2>
+    </div>
+    <h2 class="title is-5 register-to-comment" *ngIf="!user">Signup to post a comment on this project</h2>
 
-      <form *ngIf="user" class="comment-form">
-        <div class="field">
-          <div class="control">
-            <textarea class="textarea is-primary" [(ngModel)]="formInfo.content" name="content" type="text" placeholder="Comment..."></textarea>
-          </div>
+    <form *ngIf="user" class="comment-form">
+      <div class="field">
+        <div class="control">
+          <textarea class="textarea is-primary" [(ngModel)]="formInfo.content" name="content" type="text" placeholder="Comment..."></textarea>
         </div>
-        <div class="field">
-          <p class="control">
-            <button class="button is-info" (click)="createComment()">
+      </div>
+      <div class="field">
+        <p class="control">
+          <button class="button is-info" (click)="createComment()">
                     Create comment
                   </button>
 
-          </p>
-        </div>
-        <p class="error"> {{ error }} </p>
-      </form>
-    </div>
+        </p>
+      </div>
+      <p class="error"> {{ error }} </p>
+    </form>
   </div>
+</div>
 </div>

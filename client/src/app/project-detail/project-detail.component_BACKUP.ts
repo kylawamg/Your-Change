@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CommentService } from '../services/comment.service';
 import { SessionService } from '../services/session.service';
 import { LoggedinService } from '../services/loggedin.service';
-import { RelationsService } from '../services/relations.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,9 +13,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./project-detail.component.css']
 })
 export class ProjectDetailComponent implements OnInit {
-  relation:any;
+
   project: any;
-  relations: Array <object>;
   comments: Array<object>;
   error: string;
   user: any;
@@ -30,32 +28,22 @@ export class ProjectDetailComponent implements OnInit {
     projectId : ''
   };
 
-  constructor(private router: Router,
-    private projectSvc: ProjectService,
-    private route: ActivatedRoute,
-    private commentSvc: CommentService,
-    private session: SessionService,
-    private loggedin: LoggedinService,
-    private relationsSvc: RelationsService) {
+  constructor(private router: Router, private projectSvc: ProjectService, private route: ActivatedRoute, private commentSvc: CommentService, private session: SessionService, private loggedin: LoggedinService) {
 
 
 
   }
   ngOnInit() {
     this.session.isLoggedIn().subscribe(user => this.successCbUser(user));
+    this.loggedin.getEmitter().subscribe(user => this.successCbUser(user));
 
     this.route.params
       .mergeMap(p => this.projectSvc.getProjectDetail(p.id))
       .subscribe(project => {
         this.project = project;
+      //  this.isUserRegistered(this.project.candidates);
         console.log(this.project);
       });
-      this.route.params
-        .mergeMap(p => this.relationsSvc.getRelationsByProject(p.id))
-        .subscribe(relations => {
-          this.relations = relations;
-
-        })
     this.route.params
       .subscribe((params) => {
         this.commentSvc.getCommentsByProject(params.id).subscribe(comments => {
@@ -78,55 +66,41 @@ export class ProjectDetailComponent implements OnInit {
   addCandidate () {
 
     this.addCandidateInfo.userId =this.user._id;
+
     this.addCandidateInfo.projectId = this.project._id;
+    this.projectSvc.addCandidate(this.addCandidateInfo).subscribe(
+      (project) => {
+        this.project = project;
 
-    this.relationsSvc.createNewRelation(this.addCandidateInfo).subscribe(
-      (relation) => {
-
-        this.relations.push(relation);
-        this.relation = relation;
 
       })}
 
-  declineCandidate(id ){
-    this.relationsSvc.deleteRelation(id).subscribe((dltRelation) => {
-      this.relations = this.relations.filter(function( obj:any ) {
-          return obj._id !== dltRelation._id;
-      });
-
-    })
+  declineCandidate(userId){
+  var  info = {
+      userId: userId,
+      projectId: this.project._id
+    }
+    this.projectSvc.declineCandidate(info).subscribe((project) => this.successCbProject(project))
   }
 
-  acceptCandidate(relationId){
-
+  acceptCandidate(userId){
     var  info = {
-        relationId: relationId,
-//        projectId: this.project._id,
-        status: 'Accepted'
+        userId: userId,
+        projectId: this.project._id
       }
-
-      this.relationsSvc.updateRelation(info).subscribe((relation) => {
-          this.successCbRelation(relation);
-      })
+      this.projectSvc.acceptCandidate(info).subscribe((project) => this.successCbProject(project))
     }
-    deleteVolunteer(relationId){
+    deleteVolunteer(userId){
       var  info = {
-          relationId: relationId,
-          status: 'Candidate'
+          userId: userId,
+          projectId: this.project._id
         }
-
-
-        this.relationsSvc.updateRelation(info).subscribe((relation) => this.successCbRelation(relation))
+        this.projectSvc.deleteVolunteer(info).subscribe((project) => this.successCbProject(project))
       }
 
   successCbUser(val) {
     this.user = val;
 
-    this.relationsSvc.getSpecificRelation(this.user._id, this.project._id).subscribe((relation) => {
-      console.log("esta es mi relacion yiyo");
-      console.log(relation);
-      this.relation = relation;
-    });
     this.error = null;
 
   }
@@ -138,15 +112,6 @@ export class ProjectDetailComponent implements OnInit {
   }
   successCbProject(project){
   this.project = project;
-  }
-  successCbRelation(relation){
-    this.relations = this.relations.filter(function( obj:any ) {
-        return obj._id !== relation._id;
-    });
-    console.log(this.relations)
-
-    this.relations.push(relation);
-    console.log(this.relations)
   }
   successCb(comment) {
       console.log(comment);

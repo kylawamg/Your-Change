@@ -11,6 +11,7 @@ import { UserComponent } from './user/user.component';
 import { SessionService } from "./services/session.service";
 import { LoggedinService } from './services/loggedin.service';
 import { ProjectService } from './services/project.service';
+import { RelationsService } from './services/relations.service';
 import { CommentService } from './services/comment.service';
 import { MessageService } from './services/messages.service';
 import { routes } from './app.routing';
@@ -66,7 +67,8 @@ import { ShowMessagesByuserComponent } from './show-messages-byuser/show-message
       libraries: ["places"]
     })
   ],
-  providers: [SessionService, LoggedinService,ProjectService,CommentService,MessageService],
+  providers: [SessionService, LoggedinService,ProjectService,
+    CommentService,MessageService,RelationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

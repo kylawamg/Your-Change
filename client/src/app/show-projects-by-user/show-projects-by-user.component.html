@@ -16,17 +16,17 @@
               <div class="box">
         <article class="media">
   <figure class="media-left">
-  
-      <img class="img-post" src="http://www.waterville-me.gov/wp-content/uploads/2017/06/volunteer-hands.jpg" alt="">
+
+      <img class="img-post"[src]="+project.imgUrl"  alt="">
 
 
   </figure>
   <div class="media-content">
     <div class="content">
-
+  <a [routerLink]="['/projects/detail',project._id]">
           <h3 class="is-size-4 am">{{project.title}}</h3>
 
-
+</a>
 
           <p class="">
 
@@ -40,12 +40,7 @@
         <a class="level-item">
           <p>Organization: {{project.creator.name}}</p>
         </a>
-        <a class="level-item">
-            <p>Organization: {{project.creator.name}}</p>
-        </a>
-        <a class="level-item">
-            <p>Organization: {{project.creator.name}}</p>
-        </a>
+
       </div>
     </nav>
   </div>

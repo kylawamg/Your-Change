@@ -22,7 +22,8 @@ export class SendMessageComponent implements OnInit {
   error:string;
   constructor(private route: ActivatedRoute,
   private session:SessionService, private loggedin: LoggedinService,
-  private msgSvc: MessageService) { }
+  private msgSvc: MessageService,
+private router: Router) { }
 
   ngOnInit() {
   //  this.loggedin.getEmitter().subscribe((user) => { this.user = user });
@@ -55,5 +56,6 @@ export class SendMessageComponent implements OnInit {
 
     this.formInfo.content = ''
     this.error = "Mensaje enviado";
+    this.router.navigate(['/']);
   }
 }

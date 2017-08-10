@@ -3,7 +3,7 @@ import { SessionService } from '../services/session.service';
 import { LoggedinService } from '../services/loggedin.service';
 import { Router } from '@angular/router';
 import { FileUploader } from "ng2-file-upload";
-
+import {environment} from '../../environments/environment';
 @Component({
   selector: 'app-edit-user-profile',
   templateUrl: './edit-user-profile.component.html',
@@ -65,7 +65,7 @@ export class EditUserProfileComponent implements OnInit {
     this.user = user;
     this.error = null;
     this.uploader = new FileUploader({
-      url:'http://localhost:3000/user/edit/'+this.user._id
+      url:`${environment.apiUrl}/user/edit/`+this.user._id
     });
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;

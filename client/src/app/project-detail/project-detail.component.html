@@ -79,7 +79,7 @@
             <p class="card-header-title">
               <a class="comment-creator" [routerLink]="['/user/profile/', comment.creator._id]">  Posted by: <span>{{comment.creator.username}} </span></a>
 
-              <small class="time">    at: {{comment.created_at | date: 'dd/MM/yyyy'}}</small>
+              <small class="time">    at: {{comment.created_at | date: 'yMMMdjms'}}</small>
             </p>
           </header>
           <div class="card-content">

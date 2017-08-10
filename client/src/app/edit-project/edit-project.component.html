@@ -1,4 +1,4 @@
-<div class="wrapper-edit-project">
+<div *ngIf="project"class="wrapper-edit-project">
   <div class="columns is-centered">
     <div class="column is-6">
       <div class="box">
@@ -7,28 +7,28 @@
         <div class="field">
           <label class="label">Title</label>
           <p class="control">
-            <input class="input" type="text" [(ngModel)]="formInfo.title" name="title" value="{{project.title}}" placeholder="Title">
+            <input class="input" type="text" [(ngModel)]="formInfo.title" name="title"  placeholder="Title">
           </p>
         </div>
-      
+
         <div class="field">
           <label class="label">Profile</label>
           <p class="control">
-            <input class="input" type="text" [(ngModel)]="formInfo.profile" value="{{project.profile}}"name="profile" placeholder="Profile">
+            <input class="input" type="text" [(ngModel)]="formInfo.profile" name="profile" placeholder="Profile">
           </p>
         </div>
         <div class="field">
           <label class="label">Vacancies</label>
           <p class="control">
-            <input class="input" type="number" [(ngModel)]="formInfo.vacancies" value="{{project.vacancies}}"name="vacancies" placeholder="Nº Vacancies">
+            <input class="input" type="number" [(ngModel)]="formInfo.vacancies" name="vacancies" placeholder="Nº Vacancies">
           </p>
         </div>
         <label for="">DeadLine</label>
-        <input [(ngModel)]="formInfo.deadLine" type="date" value="{{project.deadLine}}" name="deadLine">
+        <input [(ngModel)]="formInfo.deadLine" type="date" name="deadLine">
         <label for="">Start</label>
-        <input [(ngModel)]="formInfo.startDate" type="date"value="{{project.startDate}}" name="startDate">
+        <input [(ngModel)]="formInfo.startDate" type="date" name="startDate">
         <label for="">End</label>
-        <input [(ngModel)]="formInfo.endDate" type="date" value="{{project.endDate}}" name="endDate">
+        <input [(ngModel)]="formInfo.endDate" type="date"  name="endDate">
         <div class="field">
           <label class="label">Type</label>
           <div class="control">
@@ -45,7 +45,7 @@
           <label class="label">Tags</label>
           <div class="control">
             <div class="select is-multiple">
-              <select value="{{project.tags}}" multiplie size="2" [(ngModel)]="formInfo.tags" name="tags">
+              <select  multiplie size="2" [(ngModel)]="formInfo.tags" name="tags">
         <option>Animales</option>
         <option>Comunidad</option>
       </select>
@@ -54,7 +54,7 @@
         </div>
         <div class="field">
           <div class="control">
-            <textarea class="textarea is-primary" value="{{project.description}}"[(ngModel)]="formInfo.description" name="description" type="text" placeholder="Description"></textarea>
+            <textarea class="textarea is-primary" [(ngModel)]="formInfo.description" name="description" type="text" placeholder="Description"></textarea>
           </div>
         </div>
         <div class="field">

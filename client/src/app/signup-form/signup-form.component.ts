@@ -56,12 +56,6 @@ export class SignupFormComponent implements OnInit {
 
   this.uploader.uploadAll();
 
-  /*  console.log(this.formInfo.type);
-    this.session.signup(this.formInfo)
-      .subscribe(
-        (user) => this.successCb(user),
-        (err) => this.errorCb(err)
-    );*/
   }
 
   errorCb(err) {
@@ -74,6 +68,6 @@ export class SignupFormComponent implements OnInit {
     this.user = user;
     this.error = null;
     this.loggedin.checkLogged(user);
-    this.router.navigate(['user/'+this.user._id])
+    this.router.navigate(['/'])
   }
 }

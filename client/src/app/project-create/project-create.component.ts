@@ -6,6 +6,7 @@ import { ProjectService } from '../services/project.service';
 import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from  '@agm/core';
 import { FileUploader } from "ng2-file-upload";
+import {environment} from '../../environments/environment';
 @Component({
   selector: 'app-project-create',
   templateUrl: './project-create.component.html',
@@ -13,7 +14,7 @@ import { FileUploader } from "ng2-file-upload";
 })
 export class ProjectCreateComponent implements OnInit {
   uploader: FileUploader = new FileUploader({
-  url: '${environment.apiUrl}/project/new'
+  url: `${environment.apiUrl}/project/new`
 });
   feedback: any;
   project:any;

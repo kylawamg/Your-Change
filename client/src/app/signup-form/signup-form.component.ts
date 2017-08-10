@@ -12,7 +12,7 @@ import { FileUploader } from "ng2-file-upload";
 })
 export class SignupFormComponent implements OnInit {
   uploader: FileUploader = new FileUploader({
-  url: '${environment.apiUrl}/user/signup'
+  url: `${environment.apiUrl}/user/signup`
 });
 
   user: any;

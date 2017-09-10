@@ -7,19 +7,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-//  locations: Observable<Array<object>>;
-locations: Array<object>=[];
+  locations: Array<object>=[];
   constructor(private projectSvc: ProjectService) {
     this.projectSvc.getAllprojects().subscribe(projects =>{
       this.locations = projects
-      console.log(this.locations);
-    }
-
+      }
     );
-
   }
-  ngOnInit() {
+  ngOnInit() {}
 
-  }
 }

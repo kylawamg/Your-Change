@@ -16,10 +16,7 @@ export class LoginFormComponent implements OnInit {
     username: '',
     password: ''
   };
-
   error: string;
-
-
   constructor(private session: SessionService, private router: Router, private loggedin: LoggedinService) { }
 
   ngOnInit() {
@@ -32,12 +29,10 @@ export class LoginFormComponent implements OnInit {
           (err) => this.errorCb(err)
         );
     }
-
   errorCb(err) {
     this.error = err;
     this.user = null;
   }
-
   successCb(user) {
     this.user = user;
     this.error = null;

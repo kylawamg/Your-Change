@@ -45,7 +45,5 @@ export const routes: Routes = [
       { path: 'mymessages', component: ShowMessagesByuserComponent}
     ]
   },
-
-  //  { path: 'comments/new', component: CreateCommentComponent },
   { path: '**', redirectTo: '' }
 ];

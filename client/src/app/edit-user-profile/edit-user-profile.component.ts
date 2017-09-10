@@ -33,8 +33,6 @@ export class EditUserProfileComponent implements OnInit {
   ngOnInit() {
     this.session.isLoggedIn().subscribe(user => this.successCb(user));
     this.loggedin.getEmitter().subscribe(user => this.successCb(user));
-
-
   }
   edit() {
     this.uploader.onBuildItemForm = (item, form) => {
@@ -45,22 +43,13 @@ export class EditUserProfileComponent implements OnInit {
       form.append('country', this.formInfo.country);
       form.append('email', this.formInfo.email);
       form.append('description', this.formInfo.description);
-    };
-
+  };
     this.uploader.uploadAll();
-    /*  this.session.editUser(this.formInfo, this.user._id)
-        .subscribe(
-          (user) => this.successCb(user),
-          (err) => this.errorCb(err)
-      );*/
   }
-
   errorCb(err) {
     this.error = err;
-    console.log(this.error)
     this.user = null;
   }
-
   successCb(user) {
     this.user = user;
     this.error = null;
@@ -74,9 +63,5 @@ export class EditUserProfileComponent implements OnInit {
     this.uploader.onErrorItem = (item, response, status, headers) => {
       this.feedback = JSON.parse(response).message;
     };
-
-
-
-  //  this.router.navigate(['user/profile/' + this.user._id])
   }
 }

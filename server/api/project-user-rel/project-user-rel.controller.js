@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const relationModel = require('./project-user-rel.model');
-//const projectModel = require('../project/project.model');
 
 exports.getAllRelations = function(req, res, next) {
   relationModel.find()
@@ -12,9 +11,8 @@ exports.getAllRelations = function(req, res, next) {
       res.status(500).json(err);
     });
 };
-// POST
+
 exports.createRelation = function(req, res, next) {
-    console.log("entra en la ruta");
   const newRelation = new relationModel({
     registered: true,
     projectId: req.body.projectId,
@@ -22,11 +20,8 @@ exports.createRelation = function(req, res, next) {
     status: 'Candidate'
   });
 
-
-
   newRelation.save((err) => {
     if (err) {
-      console.log(err);
       res.status(400).json({
         message: "Something went wrong"
       });
@@ -44,8 +39,6 @@ exports.createRelation = function(req, res, next) {
 };
 
 exports.showRelationsById = function(req, res) {
-  console.log("entra en relations back");
-  console.log(req.params.id);
   let Id = req.params.id;
   relationModel.find({
       projectId: Id
@@ -58,37 +51,27 @@ exports.showRelationsById = function(req, res) {
 
 exports.deleteRelation = function(req, res) {
   let relationId = req.params.id;
-  console.log(req.params.id);
   relationModel.findByIdAndRemove(
       relationId
     ).then(relation => {
-      console.log(relation);
       return res.status(200).json(relation);
     })
     .catch(err => {
-      console.log("holi");
        res.status(500).json(err);
     });
 };
 
 exports.updateRelation = function(req, res) {
-
   let status = req.body.status;
   let relationId = req.body.relationId;
-  console.log(relationId);
-  console.log(status);
-  //let projectId = req.body.projectId;
   relationModel.findByIdAndUpdate(
       relationId,
     {'status':status},{ 'new': true}).populate('userId')
     .exec()
     .then(relation => {
-      console.log(relation);
       return res.status(200).json(relation);
     })
     .catch(error => {
-      console.log("");
-      console.log(error);
           res.status(500).json(err);
     });
 };

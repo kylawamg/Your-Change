@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const messageModel = require('./message.model');
-//const projectModel = require('../project/project.model');
 
 exports.getAllMessages = function(req, res, next) {
   messageModel.find()
@@ -12,9 +11,8 @@ exports.getAllMessages = function(req, res, next) {
       res.status(500).json(err);
     });
 };
-// POST
+
 exports.createMessage = function(req, res, next) {
-    console.log("entra en la ruta");
   const newMessage = new messageModel({
     subject: req.body.subject,
     content: req.body.content,
@@ -22,11 +20,8 @@ exports.createMessage = function(req, res, next) {
     from: req.body.from
   });
 
-  console.log(newMessage);
-
   newMessage.save((err) => {
     if (err) {
-      console.log(err);
       res.status(400).json({
         message: "Something went wrong"
       });
@@ -44,7 +39,6 @@ exports.createMessage = function(req, res, next) {
 };
 
 exports.getMessagesByUser = function(req, res) {
-  console.log("holiii"+req.params.id);
   let userId = req.params.id;
   messageModel.find({
       to: userId
@@ -53,7 +47,6 @@ exports.getMessagesByUser = function(req, res) {
     .then((messages) => res.status(200).json(messages))
     .catch(err => res.status(500).json(err));
 };
-
 
 exports.deleteMessage = function(req, res) {
   let messageId = req.params.id;

@@ -4,15 +4,11 @@ const express = require("express");
 const authController = express.Router();
 const passport = require("passport");
 const upload = require('../../config/multer');
-// Our user model
 const User = require("./user.model");
-
-// Bcrypt let us encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 exports.editUser = function(req, res, next) {
-
   var _id = req.params.id;
   var name = req.body.name;
   var lastName = req.body.lastName;
@@ -21,7 +17,6 @@ exports.editUser = function(req, res, next) {
   var email = req.body.email;
   var age = req.body.age;
   var description = req.body.description;
-
   const update = {
       name,
       lastName,
@@ -31,9 +26,7 @@ exports.editUser = function(req, res, next) {
       age,
       description
   };
-
   if (req.file) update.picPath = `/uploads/${req.file.filename}`;
-//  if (req.file) update.picPath = `/uploads/${req.file.filename}`;
 
   User.findByIdAndUpdate(_id, update, function(err, user) {
     if (err) {
@@ -47,8 +40,6 @@ exports.editUser = function(req, res, next) {
 };
 
 exports.createUser = function(req, res, next) {
-    console.log(req.file);
-    console.log("hola");
   var username = req.body.username;
   var password = req.body.password;
   var name = req.body.name;
@@ -88,8 +79,6 @@ exports.createUser = function(req, res, next) {
       country,
       address
     });
-
-  //  if (req.file) newUser.picPath = `/uploads/${req.file.filename}`;
       if (req.file) newUser.picPath = `/uploads/${req.file.filename}`;
     newUser.save((err) => {
       if (err) {
@@ -112,17 +101,13 @@ exports.createUser = function(req, res, next) {
 };
 
 exports.logInUser = function(req, res, next) {
-  console.log(req.body);
-
   passport.authenticate('local', function(err, user, info) {
     if (err) {
       return next(err);
     }
-
     if (!user) {
       return res.status(401).json(info);
     }
-
     req.login(user, function(err) {
       if (err) {
         return res.status(500).json({
@@ -165,6 +150,7 @@ exports.logoutUser = function(req, res, next) {
     message: 'Success'
   });
 };
+
 exports.loggedInUser = function(req, res, next) {
   if (req.isAuthenticated()) {
      res.status(200).json(req.user);

@@ -14,16 +14,12 @@ export class ShowMessagesByuserComponent implements OnInit {
   user:any;
   messages:Array<object>;
   constructor(private loggedin: LoggedinService, private msgSvc: MessageService) {
-
 }
 
   ngOnInit() {
-  this.user =  this.loggedin.getUser();
-  this.msgSvc.getUserMessages(this.user._id).subscribe( messages => {
-    console.log(messages);
+    this.user =  this.loggedin.getUser();
+    this.msgSvc.getUserMessages(this.user._id).subscribe( messages => {
     this.messages = messages
-    console.log(this.messages);});
-
-}
-
+    });
+  }
 }

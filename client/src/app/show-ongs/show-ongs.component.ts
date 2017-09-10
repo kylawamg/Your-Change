@@ -15,14 +15,10 @@ export class ShowOngsComponent implements OnInit {
   ngOnInit() {
     this.route.params
        .subscribe((params) => {
-         console.log(params.type);
          this.session.getOngs(params.type).subscribe( ongs =>{
-           console.log(ongs);
           this.ongs = ongs
          }
-
-          );
-       });
-   }
-
+        );
+      });
+    }
   }

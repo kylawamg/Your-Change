@@ -12,7 +12,6 @@ export class SessionService {
   options: Object = {withCredentials:true};
   user:object;
 
-
   constructor(private http: Http) { }
 
   handleError(e) {
@@ -26,7 +25,6 @@ export class SessionService {
   }
 
   login(user) {
-
     return this.http.post(baseURL+`/user/login`, user,this.options)
       .map(res => res.json())
       .catch(this.handleError);
@@ -38,13 +36,11 @@ export class SessionService {
       .catch(this.handleError);
   }
   getUserProfile (id){
-
     return this.http.get(`${baseURL}/user/profile/${id}`, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
   getOngs(type){
-    console.log("type on service " + type);
     return this.http.get(`${baseURL}/user/type/${type}`, this.options)
       .map(res => res.json())
       .catch(this.handleError);
@@ -60,5 +56,4 @@ export class SessionService {
       .map(res => res.json())
       .catch((err) => this.handleError(err));
   }
-
 }

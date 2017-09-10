@@ -2,7 +2,6 @@ mongoose = require('mongoose');
 projectModel = require('./project.model');
 userModel = require('../user/user.model');
 
-//Get all projects
 exports.getAllProjects = function (req,res,next){
   projectModel.find().populate('creator').exec()
   .then( projectList => {res.json(projectList);
@@ -11,7 +10,6 @@ exports.getAllProjects = function (req,res,next){
   });
 };
 
-//Get project filtering by type
 exports.getAllByType = function(req,res,next){
 
   const typo = req.params.type;
@@ -22,7 +20,6 @@ exports.getAllByType = function(req,res,next){
   });
 };
 
-//Get project filtering by creator
 exports.getAllByUser = function(req,res,next){
   const id = req.params.id;
 
@@ -32,10 +29,9 @@ exports.getAllByUser = function(req,res,next){
   })
   .reject(err => { res.status(500).json(err);
   });
-//todo
+
 };
 
-// Get project detail by id
 exports.singleProject = function(req,res,next){
   projectModel.findById(req.params.id).populate('creator')
   .populate('candidates')
@@ -48,8 +44,6 @@ exports.singleProject = function(req,res,next){
 };
 
 exports.createProject = function(req, res, next) {
-    console.log(req.body.position);
-
   const newProject = new projectModel({
     creator: req.body.creator,
     title: req.body.title,
@@ -62,9 +56,6 @@ exports.createProject = function(req, res, next) {
     endDate: req.body.endDate,
     vacancies: req.body.vacancies,
     position: JSON.parse(req.body.position)
-  //  position:{ longitud: req.body.position.longitud,
-  //  latitud: req.body.position.latitud}
-
   });
 
   if (req.file) newProject.imgUrl = `/uploads/${req.file.filename}`;
@@ -72,21 +63,20 @@ exports.createProject = function(req, res, next) {
 	newProject.save()
       .then( project => {res.json({ message: 'New Project created!', id: newProject._id });})
       .catch( err => {res.status(500).json({error:err, message:"Cannot create the project"});
-    console.log("error "+err);});
+    });
 };
 
 exports.editProject = function(req, res ,next) {
-
   const updates = {
     title:         req.body.title,
     type:          req.body.type,
-    address:        req.body.address,
-    description:    req.body.description,
-    deadLine:    req.body.deadLine,
-    profile:      req.body.profile,
-    tags:      req.body.tags,
-    startDate:         req.body.startDate,
-    endDate:     req.body.endDate,
+    address:       req.body.address,
+    description:   req.body.description,
+    deadLine:      req.body.deadLine,
+    profile:       req.body.profile,
+    tags:          req.body.tags,
+    startDate:     req.body.startDate,
+    endDate:       req.body.endDate,
     vacancies:     req.body.vacancies
   };
   projectModel.findByIdAndUpdate(req.params.id, updates, (err) => {

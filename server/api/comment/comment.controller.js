@@ -12,7 +12,7 @@ exports.getAllComments = function(req, res, next) {
       res.status(500).json(err);
     });
 };
-// POST
+
 exports.createComment = function(req, res, next) {
 
   const newComment = new commentModel({
@@ -27,33 +27,6 @@ exports.createComment = function(req, res, next) {
 			return res.status(201).json(comment);
 		});
 	});
-  /*
-  newComment.save((err) => {
-    if (err) {
-      res.status(400).json({
-        message: "Something went wrong"
-      });
-    } else {
-      req.login(newComment, function(err) {
-        if (err) {
-          return res.status(500).json({
-            message: 'something went wrong :('
-          });
-        }
-        projectModel.findByIdAndUpdate(_project, {
-            $push: {
-              comments: newComment._id
-            }
-          })
-          .then(project => {
-            console.log(project);
-            console.log(newComment);
-            res.status(200).json(newComment);
-          });
-
-      });
-    }
-  });*/
 };
 
 exports.getCommentsByProject = function(req, res) {
@@ -65,7 +38,6 @@ exports.getCommentsByProject = function(req, res) {
     .then((comments) => res.status(200).json(comments))
     .catch(err => res.status(500).json(err));
 };
-
 
 exports.deleteComment = function(req, res) {
   let messageId = req.params.id;

@@ -10,17 +10,12 @@ export class LoggedinService {
   getEmitter(){
     return this.userLogged;
   }
-
-
   isLoggedIn():boolean{
     return this.user != undefined ? true : false;
   }
-
-
   getUser(){
     return this.user;
   }
-
   checkLogged(user) {
     this.user = user;
     this.userLogged.emit(user);

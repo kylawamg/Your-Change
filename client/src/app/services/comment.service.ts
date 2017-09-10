@@ -16,7 +16,6 @@ export class CommentService {
   handleError(e) {
     return Observable.throw(e.json().message);
   }
-
   createNewComent (comment){
     return this.http.post(`${baseURL}/comment/new`, comment, this.options)
       .map(res => res.json())

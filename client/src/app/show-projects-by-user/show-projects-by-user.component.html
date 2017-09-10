@@ -1,60 +1,39 @@
-
 <div class="container">
   <div class="home-content">
     <div class="columns is-centered">
       <div class="column is-11">
         <h1 class="title is-2 tittle-all-projects">Find your project</h1>
-
       </div>
-
     </div>
-
       <br>
       <div *ngFor="let project of projects; let i = index">
         <div class="columns is-centered">
             <div class="column is-11">
               <div class="box">
-        <article class="media">
-  <figure class="media-left">
-
-      <img class="img-post"[src]="+project.imgUrl"  alt="">
-
-
-  </figure>
-  <div class="media-content">
-    <div class="content">
-  <a [routerLink]="['/projects/detail',project._id]">
-          <h3 class="is-size-4 am">{{project.title}}</h3>
-
-</a>
-
-          <p class="">
-
-
-
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-      </p>
-    </div>
-    <nav id="creator"class="level is-mobile">
-      <div class="level-left">
-        <a class="level-item">
-          <p>Organization: {{project.creator.name}}</p>
-        </a>
-
-      </div>
-    </nav>
-  </div>
-
-</article>
-</div>
-
+                <article class="media">
+                  <figure class="media-left">
+                  <img class="img-post"[src]="+project.imgUrl"  alt="">
+                  </figure>
+                  <div class="media-content">
+                    <div class="content">
+                      <a [routerLink]="['/projects/detail',project._id]">
+                        <h3 class="is-size-4 am">{{project.title}}</h3>
+                      </a>
+                      <p class="">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+                      </p>
+                    </div>
+                  <nav id="creator"class="level is-mobile">
+                    <div class="level-left">
+                      <a class="level-item">
+                        <p>Organization: {{project.creator.name}}</p>
+                      </a>
+                    </div>
+                  </nav>
+                </div>
+              </article>
             </div>
-
+          </div>
         </div>
-
-
-
       </div>
-
-
-<br>
+      <br>

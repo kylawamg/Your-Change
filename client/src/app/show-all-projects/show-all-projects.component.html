@@ -3,11 +3,8 @@
     <div class="columns is-centered">
       <div class="column is-11">
         <h1 class="title is-2 tittle-all-projects">Find your project</h1>
-
       </div>
-
     </div>
-
     <br>
     <div *ngFor="let project of projects | async; let i = index">
       <div class="columns is-centered">
@@ -15,24 +12,16 @@
           <div class="box">
             <article class="media">
               <figure class="left">
-                    <a [routerLink]="['/projects/detail',project._id]">
+                  <a [routerLink]="['/projects/detail',project._id]">
                   <img class="img-post" [src]="+project.imgUrl" alt="">
-                </a>
-
+                  </a>
               </figure>
               <div class="media-content">
                 <div class="content">
-
-                <a [routerLink]="['/projects/detail',project._id]"><h3 class="is-size-4 am">{{project.title}}</h3></a>
-
-
-
-                  <p class="">
-                  {{project.description | slice:0:70}}
-
-
-                  </p>
-
+                  <a [routerLink]="['/projects/detail',project._id]"><h3 class="is-size-4 am">{{project.title}}</h3></a>
+                    <p class="">
+                      {{project.description | slice:0:70}}
+                    </p>
                 </div>
                 <nav id="creator" class="level">
                   <div class="level-left">
@@ -42,20 +31,12 @@
                       <p class="author-name">Organization: {{project.creator.name}}</p>
                     </a>
                     <a class="readmore"[routerLink]="['/projects/detail',project._id]">Read more...</a>
-
                   </div>
                 </nav>
               </div>
             </article>
           </div>
-
         </div>
-
       </div>
-
-
-
     </div>
-
-
     <br>

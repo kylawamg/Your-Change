@@ -11,7 +11,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditProjectComponent implements OnInit {
   error:string;
-
   project:any;
   formInfo = {
     title: '',
@@ -32,14 +31,12 @@ export class EditProjectComponent implements OnInit {
     this.route.params
       .mergeMap(p => this.projectSvc.getProjectDetail(p.id))
       .subscribe(project => {
-        console.log(project);
         this.project = project;
       });
   }
   edit() {
     this.route.params
     .subscribe((params) => {
-      console.log(this.formInfo);
       this.projectSvc.editProject(this.formInfo, params.id)
         .subscribe(
           (project) => this.successCb(project),
@@ -49,10 +46,8 @@ export class EditProjectComponent implements OnInit {
   }
   errorCb(err) {
     this.error = err;
-    console.log(this.error)
     this.project = null;
   }
-
   successCb(project) {
     this.project =project;
     this.error = null;

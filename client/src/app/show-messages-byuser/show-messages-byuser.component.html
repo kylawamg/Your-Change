@@ -1,24 +1,22 @@
 <div class="wrapper-messages">
-<div *ngIf="messages" class="container">
-  <div class="columns is-centered">
-    <div class="column is-6">
-      <div *ngFor="let msg of messages" class="card">
-        <header class="card-header">
-          <p class="card-header-title">
-            From: {{msg.from.username}}
-            <span class="subject"> Subject:{{msg.subject}}</span>
-            <span class="subject"> at: {{msg.created_at | date: 'yMMMdjms'}}</span>
-          </p>
-
-
-        </header>
-        <div class="card-content">
-          <div class="content">
-            <p>{{msg.content}}</p>
+  <div *ngIf="messages" class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <div *ngFor="let msg of messages" class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              From: {{msg.from.username}}
+              <span class="subject"> Subject:{{msg.subject}}</span>
+              <span class="subject"> at: {{msg.created_at | date: 'yMMMdjms'}}</span>
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <p>{{msg.content}}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>

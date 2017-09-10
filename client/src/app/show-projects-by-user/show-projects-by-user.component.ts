@@ -11,23 +11,18 @@ import { LoggedinService } from '../services/loggedin.service';
   styleUrls: ['./show-projects-by-user.component.css']
 })
 export class ShowProjectsByUserComponent implements OnInit {
-
-
-    projects:Observable<Array<object>>;
-  constructor(private project: ProjectService, 
-    private route: ActivatedRoute,
+  projects:Observable<Array<object>>;
+  constructor(private project: ProjectService,
+     private route: ActivatedRoute,
      private session:SessionService, private loggedin: LoggedinService) { }
 
   ngOnInit() {
 
     this.route.params
-       .subscribe((params) => {
-         this.project.getProjectByUser(params.creator).subscribe( projects => {
-           console.log(projects);
+        .subscribe((params) => {
+           this.project.getProjectByUser(params.creator).subscribe( projects => {
            this.projects = projects
-           console.log(this.projects);});
+        });
        })
   }
-
-
 }

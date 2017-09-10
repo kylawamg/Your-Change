@@ -36,13 +36,12 @@ export class ProjectCreateComponent implements OnInit {
     }
   };
   public latitude: number;
-   public longitude: number;
-   public searchControl: FormControl;
-   public zoom: number;
-   public formatted_address: string;
+  public longitude: number;
+  public searchControl: FormControl;
+  public zoom: number;
+  public formatted_address: string;
 
   error:string;
-
    @ViewChild("search")
   public searchElementRef: ElementRef;
 
@@ -54,7 +53,6 @@ export class ProjectCreateComponent implements OnInit {
   ngOnInit() {
     this.session.isLoggedIn().subscribe( user => this.successCbUser(user));
     this.loggedin.getEmitter().subscribe(user => this.successCbUser(user));
-    //set google maps defaults
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;
       this.router.navigate(['/']);
@@ -66,34 +64,23 @@ export class ProjectCreateComponent implements OnInit {
    this.zoom = 14;
    this.latitude = 39.8282;
    this.longitude = -98.5795;
-
-   //create search FormControl
    this.searchControl = new FormControl();
-
-   //set current position
    this.setCurrentPosition();
-
-   //load Places Autocomplete
    this.mapsAPILoader.load().then(() => {
      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
        types: ["address"]
      });
      autocomplete.addListener("place_changed", () => {
        this.ngZone.run(() => {
-         //get the place result
          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-
-         //verify result
          if (place.geometry === undefined || place.geometry === null) {
            return;
          }
 
-         //set latitude, longitude and zoom
          this.latitude = place.geometry.location.lat();
          this.longitude = place.geometry.location.lng();
          this.formatted_address = place.formatted_address;
-         //this.zoom = 14;
+
 
 
        });
@@ -105,20 +92,14 @@ export class ProjectCreateComponent implements OnInit {
        navigator.geolocation.getCurrentPosition((position) => {
          this.latitude = position.coords.latitude;
          this.longitude = position.coords.longitude;
-         //this.zoom = 14;
+
        });
      }
    }
   createProject() {
-  /*  position: {
-      longitud: Number,
-      latitud: Number
-    },*/
     this.formInfo.position.longitud = this.longitude;
     this.formInfo.position.latitud = this.latitude;
     this.formInfo.creator = this.user._id
-    console.log(this.formInfo);
-
     this.uploader.onBuildItemForm = (item, form) => {
     form.append('title', this.formInfo.title);
     form.append('type', this.formInfo.type);
@@ -132,26 +113,16 @@ export class ProjectCreateComponent implements OnInit {
     form.append('vacancies', this.formInfo.vacancies);
     form.append('creator', this.formInfo.creator);
        };
-
       this.uploader.uploadAll();
-  /*  this.projectSvc.createNewProject(this.formInfo)
-      .subscribe(
-        (project) => this.successCb(project),
-        (err) => this.errorCb(err)
-    );*/
   }
-
   successCbUser(val) {
     this.user = val;
     this.error = null;
-
   }
   errorCb(err) {
     this.error = err;
-    console.log(this.error)
     this.project = null;
   }
-
   successCb(project) {
     this.project = project;
     this.error = null;
